@@ -1,0 +1,39 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  padding: 2rem 4rem 0;
+
+  &__list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+  }
+
+  &__item {
+    &:not(:last-of-type) {
+      margin-right: 4rem;
+    }
+  }
+
+  &__menu {
+    &-icon {
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      height: 4rem;
+    }
+
+    &-bar {
+      background: var(--color-black);
+      width: 4rem;
+      height: 2px;
+
+      &:not(:last-of-type) {
+        margin-bottom: 5px;
+      }
+    }
+  }
+}

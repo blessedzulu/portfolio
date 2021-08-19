@@ -1,0 +1,35 @@
+.project {
+  &--featured {
+    display: flex;
+    align-items: center;
+    height: 100vh;
+
+    & > * {
+      flex: 0 0 50%;
+    }
+  }
+
+  &__details {
+    padding-right: 20rem;
+  }
+
+  &__image-container {
+    height: 75vh;
+    // background: var(--color-blue); // ! DEV
+    display: flex;
+    justify-content: center;
+  }
+
+  &__image-link {
+    display: inline-block;
+    height: 100%;
+    // width: 70%;
+  }
+
+  &__image {
+    height: 100%;
+    width: 100%;
+    background: #000;
+    object-fit: cover;
+  }
+}

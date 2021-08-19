@@ -1,0 +1,57 @@
+// ? Custom Properties
+:root {
+  // ? Colors
+  --color-black: #000;
+  --color-white: #fff;
+  --color-grey: #5e5e5e;
+  --color-blue: #e9f6f6;
+
+  // ? Fonts
+  --fz-1: 1.4rem;
+  --fz-2: 1.6rem;
+  --fz-3: 2rem;
+  --fz-4: 2.8rem;
+  --fz-5: 6rem;
+  --fz-6: 12rem;
+  --fw-regular: 400;
+  --fw-semibold: 600;
+
+  // ? Spacing
+  --m-1: 0.5rem;
+  --m-2: 1rem;
+  --m-3: 2rem;
+  --m-4: 4rem;
+  --m-5: 8rem;
+  --m-6: 12rem;
+  --m-7: 24rem;
+  --p-1: 0.5rem;
+  --p-2: 1rem;
+  --p-3: 2rem;
+  --p-4: 4rem;
+  --p-5: 8rem;
+  --p-6: 12rem;
+  --p-7: 24rem;
+
+  // ? Layout
+  --container-width: 114rem;
+}
+
+// ? Resets
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  box-sizing: border-box;
+  background: var(--color-white);
+  overflow-x: hidden;
+}
+
+ul,
+ol {
+  list-style: none;
+}

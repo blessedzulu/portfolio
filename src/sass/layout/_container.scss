@@ -1,0 +1,18 @@
+.container,
+.container--fluid,
+.container--flex {
+  margin: 0 auto;
+}
+
+.container {
+  max-width: var(--container-width);
+
+  &--fluid {
+    width: 100%;
+  }
+
+  &--flex {
+    display: flex;
+    gap: 3rem;
+  }
+}

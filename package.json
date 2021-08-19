@@ -1,0 +1,25 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "My personal (and portfolio) website",
+  "scripts": {
+    "start": "parcel src/index.html --open",
+    "build": "parcel src/index.html build"
+  },
+  "keywords": [
+    "portfolio",
+    "personal website",
+    "resume",
+    "developer",
+    "designer"
+  ],
+  "author": "Blessed Zulu",
+  "license": "ISC",
+  "dependencies": {
+    "@drewbot/sass-flexbox-grid": "^2.0.7",
+    "gsap": "^3.7.1"
+  },
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.0-beta.3.1"
+  }
+}

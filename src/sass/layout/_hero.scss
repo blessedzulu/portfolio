@@ -1,0 +1,37 @@
+.hero {
+  padding-top: calc(var(--p-6) + 6rem);
+
+  &__intro {
+    display: flex;
+    gap: 3rem;
+
+    & > * {
+      flex: 0 0 50%;
+    }
+  }
+
+  &__text {
+    padding-right: 15rem;
+  }
+
+  &__showreel {
+    &-video {
+      background: var(--color-blue); // ! DEV
+    }
+  }
+}
+
+.hero--home {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+  // overflow: hidden;
+
+  & .container {
+    margin-bottom: auto;
+  }
+
+  & .container--fluid {
+    position: relative;
+  }
+}

@@ -1,0 +1,14 @@
+.footer {
+  padding: var(--p-6) 0;
+
+  &__content {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &__contact {
+  }
+
+  &__connect {
+  }
+}
