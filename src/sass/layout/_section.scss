@@ -1,11 +1,29 @@
+@use "../abstracts/" as *;
+
 section {
   &:not(:last-of-type) {
-    margin-bottom: var(--m-6);
+    margin-bottom: var(--m-5);
+
+    @include respond("laptop") {
+      margin-bottom: var(--m-6);
+    }
   }
 }
 
 .section__header {
-  flex: 0 0 100%;
   display: flex;
   flex-flow: column;
+  margin-bottom: var(--m-4);
+
+  @include respond("laptop") {
+    margin-bottom: var(--m-6);
+  }
+}
+
+.section__intro {
+  margin-bottom: var(--m-2);
+
+  @include respond("laptop") {
+    margin-bottom: var(--m-4);
+  }
 }

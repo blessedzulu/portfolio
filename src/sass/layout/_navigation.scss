@@ -1,10 +1,19 @@
+@use "../abstracts/" as *;
+
 .nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: fixed;
   width: 100%;
-  padding: 2rem 4rem 0;
+  padding: 3rem 4rem 0;
+  z-index: 99;
+
+  &__logo,
+  &__item {
+    display: flex;
+    align-items: center;
+  }
 
   &__list {
     display: flex;
@@ -18,7 +27,20 @@
     }
   }
 
+  &__link {
+    &.menu-open {
+      &:link,
+      &:visited {
+        @include respond("laptop") {
+          color: var(--color-white);
+        }
+      }
+    }
+  }
+
   &__menu {
+    cursor: pointer;
+
     &-icon {
       display: flex;
       flex-flow: column;

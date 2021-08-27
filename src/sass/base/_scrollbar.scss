@@ -1,0 +1,18 @@
+::-webkit-scrollbar {
+  width: 15px;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-track {
+  cursor: pointer;
+  background: transparent;
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  border: 5px solid transparent;
+  background: var(--color-scrollbar);
+  border-radius: 100px;
+  background-clip: content-box;
+}

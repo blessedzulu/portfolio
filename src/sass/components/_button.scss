@@ -1,12 +1,20 @@
-.btn {
-  &:link,
-  &:visited {
-    display: inline-block;
-    text-decoration: none;
-    background: var(--color-black);
-    font-size: var(--fz-2);
-    color: var(--color-white);
-    font-weight: var(--fw-semibold);
-    padding: 1.5rem 4rem;
+.btn,
+.btn:link,
+.btn:visited {
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  background: var(--color-black);
+  font-family: inherit;
+  font-size: var(--fz-2);
+  color: var(--color-white);
+  font-weight: var(--fw-semibold);
+  padding: 1.5rem 4rem;
+  transition: all 0.25s var(--easing);
+
+  &:focus {
+    outline: none;
+    transform: scale(1.05);
   }
 }

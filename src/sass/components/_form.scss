@@ -1,0 +1,45 @@
+.form {
+  &__group {
+    display: flex;
+    flex-flow: column;
+
+    &:not(:last-of-type) {
+      margin-bottom: var(--m-4);
+    }
+  }
+
+  &__label {
+    display: inline-block;
+    margin-bottom: var(--m-2);
+    text-transform: uppercase;
+    font-weight: var(--fw-semibold);
+  }
+
+  &__input {
+    display: inline-block;
+    width: 100%;
+    padding: 1.5rem 2rem;
+    border: 2px solid var(--color-scrollbar);
+    font-size: inherit;
+    font-family: inherit;
+    color: var(--color-black);
+    transition: all 0.25s var(--easing);
+
+    &:focus {
+      outline: none;
+      border: 2px solid var(--color-black);
+    }
+
+    &::placeholder {
+      color: var(--color-placeholder);
+    }
+  }
+
+  & textarea {
+    resize: vertical;
+  }
+
+  & .btn {
+    align-self: flex-end;
+  }
+}

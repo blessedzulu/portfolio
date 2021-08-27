@@ -1,41 +1,25 @@
-// ? BOX SHADOWS
-@mixin box-shadow($size, $color-name) {
-  @if ($size == "sm") {
-    box-shadow: 0 1rem 2rem rgba($color-name, 0.25);
-  }
-  @if ($size == "md") {
-    box-shadow: 0 2rem 4rem rgba($color-name, 0.25);
-  }
-  @if ($size == "lg") {
-    box-shadow: 0 4rem 6rem rgba($color-name, 0.25);
-  }
-  @if ($size == "xl") {
-    box-shadow: 0 6rem 8rem rgba($color-name, 0.25);
-  }
-}
-
 // ? MEDIA QUERIES
 @mixin respond($breakpoint) {
   @if $breakpoint == mobile {
-    @media only screen and (max-width: 576px) {
+    @media only screen and (min-width: 36em) {
       @content;
     }
   }
 
   @if $breakpoint == tablet {
-    @media only screen and (max-width: 768px) {
+    @media only screen and (min-width: 49em) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == laptop {
+    @media only screen and (min-width: 63em) {
       @content;
     }
   }
 
   @if $breakpoint == desktop {
-    @media only screen and (max-width: 992px) {
-      @content;
-    }
-  }
-
-  @if $breakpoint == desktop-large {
-    @media only screen and (min-width: 1200px) {
+    @media only screen and (min-width: 76em) {
       @content;
     }
   }

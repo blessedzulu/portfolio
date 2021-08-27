@@ -1,0 +1,33 @@
+@use "../abstracts/" as *;
+
+.contact {
+  &__intro {
+  }
+
+  &__social {
+    display: flex;
+    flex-flow: row wrap;
+
+    & > * {
+      margin-bottom: 2rem;
+
+      &:not(:last-of-type) {
+        margin-right: 2rem;
+      }
+    }
+
+    @include respond("laptop") {
+      flex-flow: column;
+
+      & > * {
+        &:not(:last-child) {
+          margin-bottom: var(--m-2);
+        }
+      }
+
+      & .link {
+        align-self: start;
+      }
+    }
+  }
+}

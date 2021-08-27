@@ -1,0 +1,21 @@
+.overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: all 0.5s var(--easing);
+
+  &--body {
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 3;
+
+    @supports (backdrop-filter: blur(2.5px)) {
+      backdrop-filter: blur(2.5px);
+    }
+  }
+
+  &--featured {
+    z-index: -1;
+  }
+}

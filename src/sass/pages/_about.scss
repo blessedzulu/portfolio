@@ -1,0 +1,70 @@
+@use "../abstracts/" as *;
+
+.about {
+  &__intro {
+    [class^="col-"] {
+      &:nth-of-type(1) {
+        @include respond("tablet") {
+          margin-top: var(--m-6);
+          margin-right: -18rem;
+          position: relative;
+          z-index: 2;
+        }
+      }
+
+      &:nth-of-type(2) {
+        @include respond("tablet") {
+          position: relative;
+          z-index: 1;
+        }
+      }
+    }
+  }
+
+  &__how {
+    & .u-text-center {
+      text-align: left;
+
+      @include respond("tablet") {
+        text-align: center;
+      }
+    }
+  }
+
+  &__process {
+    &-img-container {
+      width: 50%;
+      display: flex;
+      margin-bottom: var(--m-4);
+
+      @include respond("tablet") {
+        width: 100%;
+        margin-top: -5rem;
+      }
+
+      // height: 100%;
+
+      &--odd {
+        justify-content: center;
+
+        @include respond("laptop") {
+          justify-content: flex-end;
+        }
+      }
+
+      &--even {
+        justify-content: center;
+
+        @include respond("laptop") {
+          justify-content: flex-start;
+        }
+      }
+    }
+
+    &-img {
+      width: 75%;
+      object-fit: cover;
+      object-position: right;
+    }
+  }
+}

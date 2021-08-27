@@ -1,35 +1,45 @@
+@use "../abstracts/" as *;
+
 .project {
   &--featured {
-    display: flex;
-    align-items: center;
-    height: 100vh;
+    &:not(:last-of-type) {
+      margin-bottom: var(--m-4);
+    }
 
-    & > * {
-      flex: 0 0 50%;
+    @include respond("laptop") {
+      min-height: 100vh;
     }
   }
 
   &__details {
-    padding-right: 20rem;
   }
 
   &__image-container {
-    height: 75vh;
-    // background: var(--color-blue); // ! DEV
-    display: flex;
-    justify-content: center;
+    &--featured,
+    &--regular {
+      height: 75vh;
+    }
+
+    &--featured {
+      display: flex;
+      justify-content: center;
+    }
+
+    &--full {
+      // min-height: 100vh;
+    }
   }
 
   &__image-link {
     display: inline-block;
     height: 100%;
-    // width: 70%;
+    width: 100%;
   }
 
   &__image {
     height: 100%;
     width: 100%;
-    background: #000;
     object-fit: cover;
+    object-position: center;
   }
 }

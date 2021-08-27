@@ -1,18 +1,25 @@
+@use "../abstracts/" as *;
+
 .container,
-.container--fluid,
-.container--flex {
+.container--fluid {
   margin: 0 auto;
 }
 
 .container {
-  max-width: var(--container-width);
+  max-width: var(--container-max-width);
+  padding: 0 2rem;
 
   &--fluid {
     width: 100%;
   }
+}
 
-  &--flex {
-    display: flex;
-    gap: 3rem;
+.img-container {
+  &--fluid {
+    margin: var(--m-5) 0;
+
+    @include respond("laptop") {
+      margin: var(--m-6) 0;
+    }
   }
 }

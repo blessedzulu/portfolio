@@ -1,0 +1,21 @@
+@use "../abstracts" as *;
+
+.detail-list {
+  display: flex;
+  flex-flow: column;
+  margin-bottom: var(--m-4);
+
+  @include respond("laptop") {
+    margin-bottom: 0;
+  }
+
+  &__item {
+    &:not(:last-of-type) {
+      margin-bottom: var(--m-1);
+    }
+
+    &:first-of-type {
+      margin-bottom: var(--m-2);
+    }
+  }
+}

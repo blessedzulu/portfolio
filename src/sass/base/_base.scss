@@ -1,10 +1,21 @@
+@use "../abstracts" as *;
+
 // ? Custom Properties
 :root {
   // ? Colors
   --color-black: #000;
   --color-white: #fff;
   --color-grey: #5e5e5e;
+  --color-light-grey: #e5e5e5;
+  --color-scrollbar: #c5c5c5;
   --color-blue: #e9f6f6;
+  --color-placeholder: #555555;
+
+  --linkedin-blue: #0072b1;
+  --whatsapp-green: #25d366;
+  --github-black: #211f1f;
+  --twitter-blue: #1da1f2;
+  --behance-blue: #1769ff;
 
   // ? Fonts
   --fz-1: 1.4rem;
@@ -33,7 +44,19 @@
   --p-7: 24rem;
 
   // ? Layout
-  --container-width: 114rem;
+  --container-max-width: 114rem;
+
+  // ? Easing
+  --easing: cubic-bezier(0.5, 0.7, 0.4, 1);
+}
+
+// ? Root Font Size
+html {
+  font-size: 56.25%;
+
+  @include respond("laptop") {
+    font-size: 62.5%;
+  }
 }
 
 // ? Resets
@@ -42,16 +65,22 @@
 *::after {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 body {
-  box-sizing: border-box;
   background: var(--color-white);
   overflow-x: hidden;
+  position: relative;
+  transition: all 0.5s var(--easing);
 }
 
 ul,
 ol {
   list-style: none;
+}
+
+::selection {
+  background: var(--color-black);
+  color: var(--color-white);
 }

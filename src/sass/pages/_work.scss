@@ -1,0 +1,43 @@
+@use "../abstracts/" as *;
+
+.work {
+}
+
+.projects {
+  [class^="col"] {
+    flex-basis: 100%; // ! EXP
+
+    @include respond("laptop") {
+      flex-basis: 47%; // ! EXP
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-flow: column;
+
+    &--right {
+      margin-top: var(--m-4);
+
+      @include respond("laptop") {
+        margin-top: var(--m-6);
+      }
+    }
+
+    & > * {
+      &:not(:last-of-type) {
+        margin-bottom: var(--m-4);
+      }
+    }
+
+    @supports (gap: 3rem) {
+      gap: 3rem;
+
+      & > * {
+        &:not(:last-of-type) {
+          // margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

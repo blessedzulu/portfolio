@@ -1,17 +1,14 @@
+@use "../abstracts/" as *;
+
 .hero {
-  padding-top: calc(var(--p-6) + 6rem);
+  padding-top: var(--p-6);
 
-  &__intro {
-    display: flex;
-    gap: 3rem;
-
-    & > * {
-      flex: 0 0 50%;
-    }
+  @include respond("laptop") {
+    padding-top: calc(var(--p-6) + 6rem);
   }
 
-  &__text {
-    padding-right: 15rem;
+  &__intro {
+    // padding-right: 10rem;
   }
 
   &__showreel {
@@ -24,8 +21,7 @@
 .hero--home {
   display: flex;
   flex-flow: column;
-  height: 100vh;
-  // overflow: hidden;
+  min-height: 100vh;
 
   & .container {
     margin-bottom: auto;
@@ -34,4 +30,8 @@
   & .container--fluid {
     position: relative;
   }
+}
+
+.hero--regular {
+  // height: 60vh;
 }

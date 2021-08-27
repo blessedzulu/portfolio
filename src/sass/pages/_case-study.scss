@@ -1,0 +1,23 @@
+@use "../abstracts/" as *;
+
+.case-study {
+  &__project-highlights {
+    & .row {
+      margin-bottom: var(--m-4);
+
+      @include respond("laptop") {
+        margin-bottom: var(--m-5);
+      }
+
+      &:not(:first-of-type) {
+        & [class*="col-lg-4"] {
+          margin-top: 0;
+
+          @include respond("laptop") {
+            margin-top: var(--m-5);
+          }
+        }
+      }
+    }
+  }
+}
