@@ -92,10 +92,9 @@ const animMenu = () => {
 let darkMode = JSON.parse(localStorage.getItem("darkMode"));
 
 const lightsOn = () => {
-  document.documentElement.style.setProperty("--color-white", "#fff");
-  document.documentElement.style.setProperty("--color-black", "#000");
+  document.documentElement.classList.remove("dark-mode");
   navLinkTheme.textContent = "Lights Out";
-  overlayBody.style.backgroundColor = "rgba(0, 0, 0, 0.25)";
+  overlayBody.classList.remove("dark-mode");
 
   [...aboutProcessImgs].forEach((img) => {
     img.classList.remove("dark-mode");
@@ -105,9 +104,8 @@ const lightsOn = () => {
 };
 
 const lightsOut = () => {
-  document.documentElement.style.setProperty("--color-white", "#000");
-  document.documentElement.style.setProperty("--color-black", "#fff");
-  overlayBody.style.backgroundColor = "rgba(255, 255, 255, 0.25)";
+  document.documentElement.classList.add("dark-mode");
+  overlayBody.classList.add("dark-mode");
   navLinkTheme.textContent = "Lights On";
 
   [...aboutProcessImgs].forEach((img) => {

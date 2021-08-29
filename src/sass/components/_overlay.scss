@@ -11,6 +11,10 @@
     // background: rgba(var(--color-black), 0.5);
     z-index: 3;
 
+    &.dark-mode {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
     @supports (backdrop-filter: blur(2.5px)) {
       backdrop-filter: blur(2.5px);
     }

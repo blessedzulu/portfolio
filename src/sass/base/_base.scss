@@ -10,14 +10,20 @@
   --color-light-grey: #e5e5e5;
   --color-scrollbar: #c5c5c5;
   --color-blue: #e9f6f6;
-  // --color-placeholder: #555555;
-  --color-placeholder: #808080;
+  --color-placeholder: #909090;
 
   --linkedin-blue: #0072b1;
   --whatsapp-green: #25d366;
   --github-black: #211f1f;
   --twitter-blue: #1da1f2;
   --behance-blue: #1769ff;
+
+  &.dark-mode {
+    --color-black: #fff;
+    --color-white: #000;
+    --color-placeholder: #606060;
+    --color-scrollbar: var(--color-grey);
+  }
 
   // ? Fonts
   --fz-1: 1.4rem;
