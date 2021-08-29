@@ -5,11 +5,13 @@
   // ? Colors
   --color-black: #000;
   --color-white: #fff;
+
   --color-grey: #5e5e5e;
   --color-light-grey: #e5e5e5;
   --color-scrollbar: #c5c5c5;
   --color-blue: #e9f6f6;
-  --color-placeholder: #555555;
+  // --color-placeholder: #555555;
+  --color-placeholder: #808080;
 
   --linkedin-blue: #0072b1;
   --whatsapp-green: #25d366;
@@ -52,7 +54,11 @@
 
 // ? Root Font Size
 html {
-  font-size: 56.25%;
+  font-size: 50%;
+
+  @include respond("tablet") {
+    font-size: 56.25%;
+  }
 
   @include respond("laptop") {
     font-size: 62.5%;
@@ -72,7 +78,7 @@ body {
   background: var(--color-white);
   overflow-x: hidden;
   position: relative;
-  transition: all 0.5s var(--easing);
+  // transition: all 0.5s var(--easing);
 }
 
 ul,

@@ -1,14 +1,23 @@
 @use "../abstracts/" as *;
 
 .hero {
-  padding-top: var(--p-6);
+  // padding-top: var(--p-6);
+  padding-top: calc(var(--p-6) + 6rem);
+
+  @include respond("tablet") {
+    padding-top: calc(var(--p-6) + 4rem);
+  }
 
   @include respond("laptop") {
     padding-top: calc(var(--p-6) + 6rem);
   }
 
   &__intro {
-    // padding-right: 10rem;
+    margin-bottom: var(--m-3);
+
+    @include respond("laptop") {
+      margin-bottom: 0;
+    }
   }
 
   &__showreel {

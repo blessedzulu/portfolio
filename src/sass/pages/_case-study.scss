@@ -1,6 +1,16 @@
 @use "../abstracts/" as *;
 
 .case-study {
+  &__visual-design {
+    & .row {
+      margin-bottom: var(--m-4);
+
+      @include respond("laptop") {
+        margin-bottom: var(--m-5);
+      }
+    }
+  }
+
   &__project-highlights {
     & .row {
       margin-bottom: var(--m-4);

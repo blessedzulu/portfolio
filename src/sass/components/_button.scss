@@ -1,9 +1,10 @@
 .btn,
 .btn:link,
 .btn:visited {
+  display: inline-block;
+  position: relative;
   border: none;
   cursor: pointer;
-  display: inline-block;
   text-decoration: none;
   background: var(--color-black);
   font-family: inherit;
@@ -13,8 +14,30 @@
   padding: 1.5rem 4rem;
   transition: all 0.25s var(--easing);
 
-  &:focus {
+  &:focus,
+  &:active {
     outline: none;
-    transform: scale(1.05);
+    transform: scale(0.95);
+  }
+
+  &::after {
+    content: "\203A";
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    font-size: 2rem;
+    line-height: 0.99;
+    opacity: 0;
+    transition: all 0.375s var(--easing) 0.05s;
+  }
+
+  &:hover {
+    padding-right: 5.5rem;
+    padding-left: 2.5rem;
+
+    &::after {
+      right: 2.5rem;
+      opacity: 1;
+    }
   }
 }

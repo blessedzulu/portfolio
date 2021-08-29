@@ -1,3 +1,5 @@
+@use "../abstracts" as *;
+
 .form {
   &__group {
     display: flex;
@@ -19,13 +21,15 @@
     display: inline-block;
     width: 100%;
     padding: 1.5rem 2rem;
-    border: 2px solid var(--color-scrollbar);
+    border: 2px solid var(--color-placeholder);
     font-size: inherit;
     font-family: inherit;
+    background: transparent;
     color: var(--color-black);
     transition: all 0.25s var(--easing);
 
     &:focus {
+      background: transparent;
       outline: none;
       border: 2px solid var(--color-black);
     }
@@ -40,6 +44,10 @@
   }
 
   & .btn {
-    align-self: flex-end;
+    // align-self: start;
+
+    @include respond("tablet") {
+      align-self: flex-end;
+    }
   }
 }

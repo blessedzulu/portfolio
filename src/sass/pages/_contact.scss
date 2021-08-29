@@ -16,7 +16,7 @@
       }
     }
 
-    @include respond("laptop") {
+    @include respond("tablet") {
       flex-flow: column;
 
       & > * {

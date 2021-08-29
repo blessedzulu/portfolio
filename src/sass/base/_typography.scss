@@ -71,6 +71,10 @@ body {
     font-weight: var(--fw-semibold);
   }
 
+  &--grey {
+    color: var(--color-grey);
+  }
+
   &--regular {
     font-weight: var(--fw-regular);
   }

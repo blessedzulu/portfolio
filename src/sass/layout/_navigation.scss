@@ -18,21 +18,37 @@
   &__list {
     display: flex;
     align-items: center;
-    list-style: none;
+    position: relative;
+    // list-style: none;
   }
 
   &__item {
     &:not(:last-of-type) {
       margin-right: 4rem;
     }
+
+    &--theme {
+      position: absolute;
+      right: var(--m-4);
+      min-width: max-content;
+      transition: all 0.5s var(--easing);
+    }
   }
 
   &__link {
+    &--blessed,
+    &--theme {
+      &:link,
+      &:visited {
+        transition: all 0.5s var(--easing);
+      }
+    }
+
     &.menu-open {
       &:link,
       &:visited {
         @include respond("laptop") {
-          color: var(--color-white);
+          // color: var(--color-white);
         }
       }
     }

@@ -1,10 +1,10 @@
 {
   "name": "portfolio",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "My personal (and portfolio) website",
   "scripts": {
-    "start": "parcel src/index.html --open",
-    "build": "parcel src/index.html build"
+    "start": "parcel serve src/index.html --open",
+    "build": "parcel build src/index.html --no-source-maps"
   },
   "keywords": [
     "portfolio",

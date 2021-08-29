@@ -11,6 +11,8 @@ const menuBarTop = document.querySelector(".nav__menu-bar--1");
 const menuBarBottom = document.querySelector(".nav__menu-bar--2");
 const navLinkBlessed = document.querySelector(".nav__link--blessed");
 const navLinkContact = document.querySelector(".nav__link--contact");
+const navItemTheme = document.querySelector(".nav__item--theme");
+const navLinkTheme = document.querySelector(".nav__link--theme");
 // const menuList = document.querySelector(".menu__list");
 const menuItems = document.querySelectorAll(".menu__item");
 const menuLinks = document.querySelectorAll(".menu__link");
@@ -22,6 +24,8 @@ const featuredProjects = document.querySelectorAll(".project--featured");
 const overlayFeatured = document.querySelector(".overlay--featured");
 const sectionFeatured = document.querySelector(".featured-work");
 
+const aboutProcessImgs = document.querySelectorAll(".about__process-img");
+
 // Menu open and close animations
 const animMenu = () => {
   gsap.set(menuItems, { translateX: 50, autoAlpha: 0 });
@@ -32,10 +36,10 @@ const animMenu = () => {
       defaults: { duration: 1, ease: "Expo.power2" },
     })
     .to(menu, { duration: 0.5, right: 0 })
-    .to(menuBarTop, { duration: 0.5, translateY: 3, rotate: "135" }, 0)
-    .to(menuBarBottom, { duration: 0.5, translateY: -3, rotate: "-135" }, 0)
-    // .to(navLinkBlessed, { duration: 0, color: "var(--color-white)" },)
+    .to(menuBarTop, { duration: 0.5, translateY: 3, rotate: "135deg" }, 0)
+    .to(menuBarBottom, { duration: 0.5, translateY: -3, rotate: "-135deg" }, 0)
     .to(navLinkContact, { duration: 0.25, autoAlpha: 0 }, 0)
+    // .to(navLinkTheme, { duration: 0.25, autoAlpha: 1 }, 0)
     .to(
       menuItems,
       {
@@ -51,12 +55,15 @@ const animMenu = () => {
     menuTl.reversed(!menuTl.reversed());
     body.classList.toggle("menu-open");
     navLinkBlessed.classList.toggle("menu-open");
+    navItemTheme.classList.toggle("u-hidden");
     overlayBody.classList.toggle("u-hidden");
   });
 
   overlayBody.addEventListener("click", () => {
     menuTl.reversed(!menuTl.reversed());
     body.classList.toggle("menu-open");
+    navLinkBlessed.classList.toggle("menu-open");
+    navItemTheme.classList.toggle("u-hidden");
     overlayBody.classList.toggle("u-hidden");
   });
 
@@ -64,6 +71,8 @@ const animMenu = () => {
     link.addEventListener("click", (e) => {
       menuTl.reversed(!menuTl.reversed());
       body.classList.toggle("menu-open");
+      navLinkBlessed.classList.toggle("menu-open");
+      navItemTheme.classList.toggle("u-hidden");
       overlayBody.classList.toggle("u-hidden");
     });
   });
@@ -71,10 +80,54 @@ const animMenu = () => {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && !overlayBody.classList.contains("u-hidden")) {
       menuTl.reversed(!menuTl.reversed());
-      overlayBody.classList.toggle("u-hidden");
       body.classList.toggle("menu-open");
+      navLinkBlessed.classList.toggle("menu-open");
+      navItemTheme.classList.toggle("u-hidden");
+      overlayBody.classList.add("u-hidden");
     }
   });
+};
+
+// Theme switcher functionality
+let darkMode = JSON.parse(localStorage.getItem("darkMode"));
+
+const lightsOn = () => {
+  document.documentElement.style.setProperty("--color-white", "#fff");
+  document.documentElement.style.setProperty("--color-black", "#000");
+  navLinkTheme.textContent = "Lights Out";
+  overlayBody.style.backgroundColor = "rgba(0, 0, 0, 0.25)";
+
+  [...aboutProcessImgs].forEach((img) => {
+    img.classList.remove("dark-mode");
+  });
+
+  localStorage.setItem("darkMode", null);
+};
+
+const lightsOut = () => {
+  document.documentElement.style.setProperty("--color-white", "#000");
+  document.documentElement.style.setProperty("--color-black", "#fff");
+  overlayBody.style.backgroundColor = "rgba(255, 255, 255, 0.25)";
+  navLinkTheme.textContent = "Lights On";
+
+  [...aboutProcessImgs].forEach((img) => {
+    img.classList.add("dark-mode");
+  });
+
+  localStorage.setItem("darkMode", true);
+};
+
+const themeToggle = () => {
+  navLinkTheme.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    darkMode = JSON.parse(localStorage.getItem("darkMode"));
+    darkMode == null ? lightsOut() : lightsOn();
+  });
+};
+
+const setTheme = () => {
+  darkMode == null ? lightsOn() : lightsOut();
 };
 
 // Link hover animations
@@ -131,6 +184,8 @@ const init = () => {
   animMenu();
   animLinks();
   animFeaturedBg();
+  setTheme();
+  themeToggle();
 };
 
 window.addEventListener("DOMContentLoaded", init);

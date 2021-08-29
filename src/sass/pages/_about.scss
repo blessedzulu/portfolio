@@ -32,6 +32,12 @@
   }
 
   &__process {
+    margin-top: var(--m-5);
+
+    @include respond("tablet") {
+      margin-top: var(--m-6);
+    }
+
     &-img-container {
       width: 50%;
       display: flex;
@@ -65,6 +71,10 @@
       width: 75%;
       object-fit: cover;
       object-position: right;
+
+      &.dark-mode {
+        filter: invert(1);
+      }
     }
   }
 }
