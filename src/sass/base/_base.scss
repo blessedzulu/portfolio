@@ -10,7 +10,7 @@
   --color-light-grey: #e5e5e5;
   --color-scrollbar: #c5c5c5;
   --color-blue: #e9f6f6;
-  --color-placeholder: #909090;
+  --color-placeholder: #a5a5a5;
 
   --linkedin-blue: #0072b1;
   --whatsapp-green: #25d366;
@@ -21,7 +21,7 @@
   &.dark-mode {
     --color-black: #fff;
     --color-white: #000;
-    --color-placeholder: #606060;
+    --color-placeholder: #5a5a5a;
     --color-scrollbar: var(--color-grey);
   }
 

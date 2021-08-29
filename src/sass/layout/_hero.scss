@@ -21,6 +21,10 @@
   }
 
   &__showreel {
+    @include respond("tablet") {
+      margin-top: -2.5rem;
+    }
+
     &-video {
       background: var(--color-blue); // ! DEV
     }
