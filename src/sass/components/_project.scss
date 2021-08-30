@@ -1,6 +1,17 @@
 @use "../abstracts/" as *;
 
 .project {
+  &--regular {
+    opacity: 0;
+    transform: scale(0.975) translateY(var(--m-4));
+    transition: all 0.5s var(--easing);
+
+    &.anim-in {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+  }
+
   &--featured {
     &:not(:last-of-type) {
       margin-bottom: var(--m-4);
@@ -11,10 +22,12 @@
     }
   }
 
-  &__details {
-  }
-
   &__image-container {
+    will-change: auto;
+    backface-visibility: hidden;
+    overflow: hidden;
+    transition: transform 0.25s var(--easing);
+
     &--featured,
     &--regular {
       height: 75vh;
@@ -23,9 +36,13 @@
     &--featured {
       display: flex;
       justify-content: center;
+
+      &:hover {
+        transform: scale(0.975);
+      }
     }
 
-    &--full {
+    &--fluid {
       // min-height: 100vh;
     }
   }

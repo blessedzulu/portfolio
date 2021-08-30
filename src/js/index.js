@@ -26,7 +26,24 @@ const sectionFeatured = document.querySelector(".featured-work");
 
 const aboutProcessImgs = document.querySelectorAll(".about__process-img");
 
-// Menu open and close animations
+const projects = document.querySelectorAll(".project");
+const projectsRegular = document.querySelectorAll(".project--regular");
+
+const projectImgContainers = document.querySelectorAll(
+  ".project__image-container"
+);
+const projectImgContainersRegular = document.querySelectorAll(
+  ".project__image-container--regular"
+);
+const projectImgContainersFeatured = document.querySelectorAll(
+  ".project__image-container--featured"
+);
+const projectImgContainersFluid = document.querySelectorAll(
+  ".project__image-container--fluid"
+);
+const projectImgs = document.querySelectorAll(".project__image-container img");
+
+// ? Menu open and close animations
 const animMenu = () => {
   gsap.set(menuItems, { translateX: 50, autoAlpha: 0 });
 
@@ -88,7 +105,7 @@ const animMenu = () => {
   });
 };
 
-// Theme switcher functionality
+// ? Theme switcher functionality
 let darkMode = JSON.parse(localStorage.getItem("darkMode"));
 
 const lightsOn = () => {
@@ -128,7 +145,7 @@ const setTheme = () => {
   darkMode == null ? lightsOn() : lightsOut();
 };
 
-// Link hover animations
+// ? Link hover animations
 const animLinks = () => {
   [...linksPlain].forEach((link) => {
     link.addEventListener("mouseleave", () => {
@@ -151,7 +168,7 @@ const animLinks = () => {
   });
 };
 
-// Featured project background animation
+// ? Featured project background animation
 const animFeaturedBg = () => {
   // gsap.to(overlayFeatured, {
   //   scrollTrigger: {
@@ -178,12 +195,75 @@ const animFeaturedBg = () => {
   // });
 };
 
+// ? Parallax image scrolling effect
+const imgParallaxEffect = () => {
+  [...projectImgContainersRegular, ...projectImgContainersFeatured].forEach(
+    (container) => {
+      const img = container.querySelector(".project__image");
+
+      gsap.set(img, { scale: 1.5 });
+
+      gsap.to(img, {
+        yPercent: 35,
+        scrollTrigger: {
+          trigger: container,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+          markers: true,
+        },
+      });
+    }
+  );
+};
+
+const imgFluidScaleEffect = () => {
+  [...projectImgContainersFluid].forEach((container) => {
+    const imgFluid = container.querySelector(".project__image--fluid");
+
+    gsap.to(imgFluid, {
+      scale: 1.25,
+      scrollTrigger: {
+        trigger: container,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+        markers: true,
+      },
+    });
+  });
+};
+
+// ? Image hover move effect
+const imgHoverEffect = () => {};
+
+// ? Project grow on scroll effect
+const projectPopUpEffect = () => {
+  [...projectsRegular].forEach((project) => {
+    gsap.to(project, {
+      scrollTrigger: {
+        trigger: project,
+        start: "top bottom-=20%",
+        toggleClass: "anim-in",
+        end: "bottom top",
+        // scrub: true,
+        markers: true,
+      },
+    });
+  });
+};
+
+// ? Init
 const init = () => {
   animMenu();
   animLinks();
   animFeaturedBg();
   setTheme();
   themeToggle();
+  imgParallaxEffect();
+  imgHoverEffect();
+  imgFluidScaleEffect();
+  projectPopUpEffect();
 };
 
 window.addEventListener("DOMContentLoaded", init);
