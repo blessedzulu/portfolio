@@ -10,15 +10,16 @@
 
   &--body {
     z-index: 3;
-    background: rgba(0, 0, 0, 0.25);
 
-    &.dark-mode {
-      background: rgba(255, 255, 255, 0.25);
+    @supports (backdrop-filter: blur(2.5px)) {
+      backdrop-filter: blur(2.5px);
     }
 
     @include respond("laptop") {
-      @supports (backdrop-filter: blur(2.5px)) {
-        backdrop-filter: blur(2.5px);
+      background: rgba(0, 0, 0, 0.25);
+
+      &.dark-mode {
+        background: rgba(255, 255, 255, 0.25);
       }
     }
   }
