@@ -5,10 +5,10 @@
 
 .projects {
   [class^="col"] {
-    flex-basis: 100%; // ! EXP
+    flex-basis: 100%;
 
     @include respond("laptop") {
-      flex-basis: 47%; // ! EXP
+      flex-basis: 47%;
     }
   }
 

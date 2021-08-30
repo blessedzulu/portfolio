@@ -210,7 +210,7 @@ const imgParallaxEffect = () => {
           start: "top bottom",
           end: "bottom top",
           scrub: true,
-          markers: true,
+          // markers: true,
         },
       });
     }
@@ -228,7 +228,7 @@ const imgFluidScaleEffect = () => {
         start: "top bottom",
         end: "bottom top",
         scrub: true,
-        markers: true,
+        // markers: true,
       },
     });
   });
@@ -244,10 +244,9 @@ const projectPopUpEffect = () => {
       scrollTrigger: {
         trigger: project,
         start: "top bottom-=20%",
-        toggleClass: "anim-in",
         end: "bottom top",
-        // scrub: true,
-        markers: true,
+        toggleClass: "anim-in",
+        // markers: true,
       },
     });
   });
