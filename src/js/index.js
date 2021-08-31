@@ -204,7 +204,7 @@ const imgParallaxEffect = () => {
       gsap.set(img, { scale: 1.5 });
 
       gsap.to(img, {
-        yPercent: 35,
+        yPercent: 25,
         scrollTrigger: {
           trigger: container,
           start: "top bottom",
@@ -217,6 +217,7 @@ const imgParallaxEffect = () => {
   );
 };
 
+// ? Fluid image scale on scroll effect
 const imgFluidScaleEffect = () => {
   [...projectImgContainersFluid].forEach((container) => {
     const imgFluid = container.querySelector(".project__image--fluid");
@@ -226,7 +227,7 @@ const imgFluidScaleEffect = () => {
       scrollTrigger: {
         trigger: container,
         start: "top bottom",
-        end: "bottom top",
+        end: "top top",
         scrub: true,
         // markers: true,
       },
@@ -246,6 +247,7 @@ const projectPopUpEffect = () => {
         start: "top bottom-=20%",
         end: "bottom top",
         toggleClass: "anim-in",
+        // toggleActions: "play pause pause reset",
         // markers: true,
       },
     });
