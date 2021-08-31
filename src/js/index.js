@@ -59,7 +59,7 @@ const initSmoothScroll = () => {
 
   // * Init scrollbar
   const scrollBar = Scrollbar.init(document.querySelector("#viewport"), {
-    damping: 0.1,
+    damping: 0.075,
 
     plugins: {
       overscroll: {
@@ -270,7 +270,7 @@ const imgFluidScaleEffect = () => {
         trigger: container,
         start: "top bottom",
         end: "top top",
-        scrub: true,
+        scrub: 1,
         // markers: true,
       },
     });
