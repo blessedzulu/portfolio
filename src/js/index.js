@@ -3,48 +3,13 @@ import OverscrollPlugin from "smooth-scrollbar/plugins/overscroll";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 
-// ? Register GSAP plugins
+// ? Register plugins
 gsap.registerPlugin(ScrollTrigger);
-
-// ? Register smooth-scrollbar plugins
 Scrollbar.use(OverscrollPlugin);
-
-// ? Smooth scroll setup
-const scrollBar = Scrollbar.init(document.querySelector("#viewport"), {
-  damping: 0.1,
-  // renderByPixels: false,
-
-  plugins: {
-    overscroll:
-      {
-        effect: "bounce",
-        damping: 0.15,
-        maxOverscroll: 150,
-      } || false,
-    // mobile: {
-    //   effect: "glow",
-    //   speed: 0.5,
-    //   alwaysShowTracks: false,
-    // },
-  },
-});
-
-// * Link scrollTrigger to scrollBar
-ScrollTrigger.scrollerProxy(document.body, {
-  scrollTop(value) {
-    if (arguments.length) {
-      scrollBar.scrollTop = value;
-    }
-
-    return scrollBar.scrollTop;
-  },
-});
-
-// * Update scrollTrigger when scrollBar updates
-scrollBar.addListener(ScrollTrigger.update);
 
 // ? DOM Nodes
 const body = document.body;
+const viewportEl = document.querySelector("#viewport");
 const overlayBody = document.querySelector(".overlay--body");
 const menu = document.querySelector(".menu");
 const menuIcon = document.querySelector(".nav__menu-icon");
@@ -83,6 +48,42 @@ const projectImgContainersFluid = document.querySelectorAll(
   ".project__image-container--fluid"
 );
 const projectImgs = document.querySelectorAll(".project__image-container img");
+
+// ? Smooth scroll setup
+const initSmoothScroll = () => {
+  const touch = matchMedia("(hover: none), (pointer: coarse)").matches;
+
+  if (touch) return;
+
+  viewportEl.classList.add("not-touch");
+
+  // * Init scrollbar
+  const scrollBar = Scrollbar.init(document.querySelector("#viewport"), {
+    damping: 0.1,
+
+    plugins: {
+      overscroll: {
+        effect: "bounce",
+        damping: 0.15,
+        maxOverscroll: 150,
+      },
+    },
+  });
+
+  // * Link scrollTrigger to scrollBar
+  ScrollTrigger.scrollerProxy(document.body, {
+    scrollTop(value) {
+      if (arguments.length) {
+        scrollBar.scrollTop = value;
+      }
+
+      return scrollBar.scrollTop;
+    },
+  });
+
+  // * Update scrollTrigger when scrollBar updates
+  scrollBar.addListener(ScrollTrigger.update);
+};
 
 // ? Menu open and close animations
 const animMenu = () => {
@@ -297,6 +298,7 @@ const projectPopUpEffect = () => {
 
 // ? Init
 const init = () => {
+  initSmoothScroll();
   animMenu();
   animLinks();
   animFeaturedBg();
