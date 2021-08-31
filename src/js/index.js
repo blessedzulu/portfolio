@@ -1,6 +1,47 @@
+import Scrollbar from "smooth-scrollbar";
+import OverscrollPlugin from "smooth-scrollbar/plugins/overscroll";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+
+// ? Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
+
+// ? Register smooth-scrollbar plugins
+Scrollbar.use(OverscrollPlugin);
+
+// ? Smooth scroll setup
+const scrollBar = Scrollbar.init(document.querySelector("#viewport"), {
+  damping: 0.1,
+  // renderByPixels: false,
+
+  plugins: {
+    overscroll:
+      {
+        effect: "bounce",
+        damping: 0.15,
+        maxOverscroll: 150,
+      } || false,
+    // mobile: {
+    //   effect: "glow",
+    //   speed: 0.5,
+    //   alwaysShowTracks: false,
+    // },
+  },
+});
+
+// * Link scrollTrigger to scrollBar
+ScrollTrigger.scrollerProxy(document.body, {
+  scrollTop(value) {
+    if (arguments.length) {
+      scrollBar.scrollTop = value;
+    }
+
+    return scrollBar.scrollTop;
+  },
+});
+
+// * Update scrollTrigger when scrollBar updates
+scrollBar.addListener(ScrollTrigger.update);
 
 // ? DOM Nodes
 const body = document.body;

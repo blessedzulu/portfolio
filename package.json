@@ -16,7 +16,8 @@
   "author": "Blessed Zulu",
   "license": "ISC",
   "dependencies": {
-    "gsap": "^3.7.1"
+    "gsap": "^3.7.1",
+    "smooth-scrollbar": "^8.6.3"
   },
   "devDependencies": {
     "@parcel/transformer-image": "^2.0.0-rc.0",
