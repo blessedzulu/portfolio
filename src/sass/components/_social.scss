@@ -20,10 +20,16 @@
     height: 2.5rem;
     width: 2.5rem;
     color: var(--color-black);
-    line-height: 0;
+
+    display: flex;
+
     transition: color 0.25s var(--easing);
 
-    &--behance,
+    &--behance {
+      width: 3.125rem;
+      height: 3.125rem;
+    }
+
     &--linkedin {
       width: 3rem;
       height: 3rem;

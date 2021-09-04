@@ -70,6 +70,9 @@ const initSmoothScroll = () => {
     },
   });
 
+  // * Scrollbar tracks customisation
+  scrollBar.track.xAxis.element.remove();
+
   // * Link scrollTrigger to scrollBar
   ScrollTrigger.scrollerProxy(document.body, {
     scrollTop(value) {

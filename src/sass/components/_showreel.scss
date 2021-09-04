@@ -1,0 +1,11 @@
+@use "../abstracts" as *;
+
+.showreel {
+  @include respond("tablet") {
+    margin-top: -2.5rem;
+  }
+
+  &__video {
+    background: var(--color-blue); // ! DEV
+  }
+}

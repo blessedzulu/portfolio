@@ -19,22 +19,16 @@
       margin-bottom: 0;
     }
   }
-
-  &__showreel {
-    @include respond("tablet") {
-      margin-top: -2.5rem;
-    }
-
-    &-video {
-      background: var(--color-blue); // ! DEV
-    }
-  }
 }
 
 .hero--home {
   display: flex;
   flex-flow: column;
   min-height: 100vh;
+
+  @supports (min-height: 100dvh) {
+    min-height: 100dvh;
+  }
 
   & .container {
     margin-bottom: auto;
