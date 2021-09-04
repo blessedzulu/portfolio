@@ -49,6 +49,10 @@ body {
   &--display {
     text-transform: uppercase;
   }
+
+  &--regular {
+    font-weight: var(--fw-regular);
+  }
 }
 
 .text {
