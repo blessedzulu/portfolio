@@ -65,7 +65,7 @@ const initSmoothScroll = () => {
       overscroll: {
         effect: "bounce",
         damping: 0.15,
-        maxOverscroll: 150,
+        maxOverscroll: 100,
       },
     },
   });
