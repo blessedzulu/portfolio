@@ -17,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "gsap": "^3.7.1",
+    "plyr": "^3.6.8",
     "smooth-scrollbar": "^8.6.3"
   },
   "devDependencies": {
