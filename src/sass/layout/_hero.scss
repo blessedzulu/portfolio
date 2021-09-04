@@ -26,8 +26,8 @@
   flex-flow: column;
   min-height: 100vh;
 
-  @supports (min-height: 100dvh) {
-    min-height: 100dvh;
+  @supports (min-height: 100svh) {
+    min-height: 100svh;
   }
 
   & .container {
