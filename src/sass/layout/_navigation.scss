@@ -6,8 +6,12 @@
   align-items: center;
   position: fixed;
   width: 100%;
-  padding: 3rem 4rem 0;
   z-index: 99;
+  padding: 3rem 3rem 0;
+
+  @include respond("tablet") {
+    padding: 3rem 4rem 0;
+  }
 
   &__logo,
   &__item {

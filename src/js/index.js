@@ -12,14 +12,13 @@ const body = document.body;
 const viewportEl = document.querySelector("#viewport");
 const overlayBody = document.querySelector(".overlay--body");
 const menu = document.querySelector(".menu");
-const menuIcon = document.querySelector(".nav__menu-icon");
+const menuIcon = document.querySelector(".nav__menu");
 const menuBarTop = document.querySelector(".nav__menu-bar--1");
 const menuBarBottom = document.querySelector(".nav__menu-bar--2");
 const navLinkBlessed = document.querySelector(".nav__link--blessed");
 const navLinkContact = document.querySelector(".nav__link--contact");
 const navItemTheme = document.querySelector(".nav__item--theme");
 const navLinkTheme = document.querySelector(".nav__link--theme");
-// const menuList = document.querySelector(".menu__list");
 const menuItems = document.querySelectorAll(".menu__item");
 const menuLinks = document.querySelectorAll(".menu__link");
 
@@ -101,7 +100,6 @@ const animMenu = () => {
     .to(menuBarTop, { duration: 0.5, translateY: 3, rotate: "135deg" }, 0)
     .to(menuBarBottom, { duration: 0.5, translateY: -3, rotate: "-135deg" }, 0)
     .to(navLinkContact, { duration: 0.25, autoAlpha: 0 }, 0)
-    // .to(navLinkTheme, { duration: 0.25, autoAlpha: 1 }, 0)
     .to(
       menuItems,
       {
@@ -113,7 +111,9 @@ const animMenu = () => {
       0.25
     );
 
-  menuIcon.addEventListener("click", () => {
+  menuIcon.addEventListener("click", (e) => {
+    e.preventDefault();
+
     menuTl.reversed(!menuTl.reversed());
     body.classList.toggle("menu-open");
     navLinkBlessed.classList.toggle("menu-open");
