@@ -2,6 +2,11 @@ import Scrollbar from "smooth-scrollbar";
 import OverscrollPlugin from "smooth-scrollbar/plugins/overscroll";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import Plyr from "plyr";
+
+const plyr = new Plyr();
+
+console.dir(Plyr);
 
 // ? Register plugins
 gsap.registerPlugin(ScrollTrigger);
