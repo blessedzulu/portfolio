@@ -13,8 +13,7 @@
 
 </head>
 
-<body>
-
+<body data-barba="wrapper">
   <!-- Navigation -->
   <header class="header">
     <nav class="nav">
@@ -85,10 +84,10 @@
 
   <!-- Smooth Scroll Container -->
   <div id="viewport">
-    <main class="main">
+    <main class="main" data-barba="container" data-barba-namespace="home">
       <section class="hero hero--home">
         <div class="container">
-          <div class="row between-md">
+          <div class="row">
             <div class="col-xs-12 col-md-5">
               <div class="hero__intro">
                 <h1 class="heading heading--2 heading--upper">
@@ -96,10 +95,16 @@
                 </h1>
               </div>
             </div>
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-4">
               <div class="showreel">
                 <h2 class="heading heading--4 text--grey heading--upper u-mb-2">Take a look</h2>
-                <video src="#" class="showreel__video"></video>
+                <div class="showreel__video-container">
+                  <video class="showreel__video" id="player">
+                    <source src="assets/videos/showreel.mp4" type="video/mp4">
+                    <!-- <source src="#" type="video/webm"> -->
+                    Can't play video.
+                  </video>
+                </div>
               </div>
             </div>
           </div>
@@ -269,6 +274,11 @@
   </div>
 
   <div class="overlay overlay--body u-hidden"></div>
+
+  <!-- Site Loader & Page Transition -->
+  <div class="loader">
+    <div class="loader__transition"></div>
+  </div>
 
   <script type="module" src="js/index.js"></script>
 </body>

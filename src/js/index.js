@@ -3,19 +3,20 @@ import OverscrollPlugin from "smooth-scrollbar/plugins/overscroll";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Plyr from "plyr";
-
-const plyr = new Plyr();
-
-console.dir(Plyr);
+import barba from "@barba/core";
+import gsapCore from "gsap/gsap-core";
 
 // ? Register plugins
 gsap.registerPlugin(ScrollTrigger);
 Scrollbar.use(OverscrollPlugin);
 
 // ? DOM Nodes
+const htmlEl = document.querySelector("html");
 const body = document.body;
 const viewportEl = document.querySelector("#viewport");
 const overlayBody = document.querySelector(".overlay--body");
+const loader = document.querySelector(".loader");
+const loaderTransition = document.querySelector(".loader__transition");
 const menu = document.querySelector(".menu");
 const menuIcon = document.querySelector(".nav__menu");
 const menuBarTop = document.querySelector(".nav__menu-bar--1");
@@ -54,6 +55,8 @@ const projectImgContainersFluid = document.querySelectorAll(
 const projectImgs = document.querySelectorAll(".project__image-container img");
 
 // ? Smooth scroll setup
+let scrollBar;
+
 const initSmoothScroll = () => {
   const touch = matchMedia("(hover: none), (pointer: coarse)").matches;
 
@@ -62,7 +65,7 @@ const initSmoothScroll = () => {
   viewportEl.classList.add("not-touch");
 
   // * Init scrollbar
-  const scrollBar = Scrollbar.init(document.querySelector("#viewport"), {
+  scrollBar = Scrollbar.init(document.querySelector("#viewport"), {
     damping: 0.075,
 
     plugins: {
@@ -182,17 +185,22 @@ const lightsOut = () => {
   localStorage.setItem("darkMode", true);
 };
 
+const toggleTheme = (mode = "light-mode") => {
+  if (mode === "dark-mode") {
+  }
+};
+
 const themeToggle = () => {
   navLinkTheme.addEventListener("click", (e) => {
     e.preventDefault();
 
     darkMode = JSON.parse(localStorage.getItem("darkMode"));
-    darkMode == null ? lightsOut() : lightsOn();
+    darkMode === null ? lightsOut() : lightsOn();
   });
 };
 
 const setTheme = () => {
-  darkMode == null ? lightsOn() : lightsOut();
+  darkMode === null ? lightsOn() : lightsOut();
 };
 
 // ? Link hover animations
@@ -304,9 +312,65 @@ const projectPopUpEffect = () => {
   });
 };
 
+// ? Initialise video player
+const initShowreel = () => {
+  const plyr = new Plyr("#player", {
+    title: "Portfolio Showreel",
+    controls: ["play-large", "fullscreen"],
+  });
+};
+
+// ? Page transitions
+const transitionIn = (data) => {
+  return gsap
+    .timeline({
+      defaults: { duration: 1, ease: "power4.out" },
+    })
+    .to(loaderTransition, { top: 0 });
+};
+
+const transitionOut = (data) => {
+  return gsap
+    .timeline()
+    .to(loaderTransition, { top: "-100%" })
+    .set(loaderTransition, { top: "100%" })
+    .from(data.next.container, { y: 50, autoAlpha: 0 });
+};
+
+const initPageTransition = () => {
+  barba.init({
+    transitions: [
+      {
+        name: "page-transition",
+        once() {},
+        async leave(data) {
+          await transitionIn(data);
+        },
+        enter(data) {
+          transitionOut(data);
+        },
+      },
+    ],
+  });
+
+  barba.hooks.before(() => {
+    htmlEl.classList.add("is-transitioning");
+  });
+
+  barba.hooks.after(() => {
+    htmlEl.classList.remove("is-transitioning");
+  });
+
+  barba.hooks.enter(() => {
+    scrollBar.scrollTo(0, 0);
+  });
+};
+
 // ? Init
 const init = () => {
   initSmoothScroll();
+  initShowreel();
+  initPageTransition();
   animMenu();
   animLinks();
   animFeaturedBg();
@@ -317,5 +381,10 @@ const init = () => {
   imgFluidScaleEffect();
   projectPopUpEffect();
 };
+
+// ? Call functions on page transition
+// barba.hooks.beforeEnter((data) => {
+//   init();
+// });
 
 window.addEventListener("DOMContentLoaded", init);

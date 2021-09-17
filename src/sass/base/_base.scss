@@ -69,6 +69,11 @@ html {
   @include respond("laptop") {
     font-size: 62.5%;
   }
+
+  &.is-transitioning {
+    pointer-events: none;
+    cursor: progress;
+  }
 }
 
 // ? Resets

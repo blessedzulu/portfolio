@@ -32,6 +32,19 @@
 
   & .container {
     margin-bottom: auto;
+
+    & .row {
+      @include respond("tablet") {
+        gap: 4rem;
+        margin-right: 0;
+
+        & > * {
+          &:not(:last-child) {
+            margin-right: 4rem;
+          }
+        }
+      }
+    }
   }
 
   & .container--fluid {

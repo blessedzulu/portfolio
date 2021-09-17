@@ -1,0 +1,19 @@
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 105;
+  min-width: 100vw;
+  min-height: 100vh;
+  pointer-events: none;
+
+  &__transition {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(255, 217, 0, 0.473);
+  }
+}

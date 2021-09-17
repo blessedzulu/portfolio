@@ -27,6 +27,10 @@ body {
 
   &--display {
     font-size: 11vw;
+
+    @include respond("desktop") {
+      // font-size: 15rem;
+    }
   }
 
   &--1 {
@@ -105,12 +109,12 @@ body {
 
 .developer {
   bottom: -3vw;
-  left: -2vw;
+  // left: -2vw;
 
   display: flex;
   align-items: baseline;
 
-  & span {
+  /* & span {
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -121,6 +125,15 @@ body {
     color: var(--color-white);
     border-radius: 50%;
     background: var(--color-black);
+    margin-right: 1rem;
+    
+    @include respond("tablet") {
+      margin-right: 2rem;
+    }
+  } */
+
+  & span {
+    font-size: 8vw;
     margin-right: 1rem;
 
     @include respond("tablet") {

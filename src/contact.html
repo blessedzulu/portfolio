@@ -13,7 +13,7 @@
 
 </head>
 
-<body>
+<body data-barba="wrapper">
   <header class="header">
     <nav class="nav">
       <div class="nav__logo"><a href="index.html"
@@ -81,8 +81,8 @@
   </div>
 
   <div id="viewport">
+    <main class="main" data-barba="container" data-barba-namespace="contact">
 
-    <main class="main">
 
       <!-- Hero Regular -->
       <section class="hero hero--regular">
@@ -225,6 +225,11 @@
   </div>
 
   <div class="overlay overlay--body u-hidden"></div>
+
+  <!-- Site Loader & Page Transition -->
+  <div class="loader">
+    <div class="loader__transition"></div>
+  </div>
 
   <script type="module" src="js/index.js"></script>
 </body>
