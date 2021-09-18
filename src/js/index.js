@@ -226,33 +226,6 @@ const animLinks = () => {
   });
 };
 
-// ? Featured project background animation
-const animFeaturedBg = () => {
-  // gsap.to(overlayFeatured, {
-  //   scrollTrigger: {
-  //     trigger: sectionFeatured,
-  //     start: "top top",
-  //     end: "bottom top",
-  //     markers: true,
-  //     scrub: true,
-  //     toggleClass: "u-hidden",
-  //   },
-  // });
-  // [...featuredProjects].forEach((project) => {
-  //   gsap.to(overlayFeatured, {
-  //     backgroundColor: project.dataset.projectBg,
-  //     duration: 0.5,
-  //     autoAlpha: 1,
-  //     scrollTrigger: {
-  //       trigger: project,
-  //       start: "center center",
-  //       end: "bottom center",
-  //       markers: true,
-  //     },
-  //   });
-  // });
-};
-
 // ? Parallax image scrolling effect
 const imgParallaxEffect = () => {
   [...projectImgContainersRegular, ...projectImgContainersFeatured].forEach(
@@ -306,7 +279,7 @@ const projectPopUpEffect = () => {
         end: "bottom top",
         toggleClass: "anim-in",
         // toggleActions: "play pause pause reset",
-        // markers: true,
+        markers: true,
       },
     });
   });
@@ -337,12 +310,29 @@ const transitionOut = (data) => {
     .from(data.next.container, { y: 50, autoAlpha: 0 });
 };
 
+const killEvents = () => {
+  // Kill scrollbar and scrolltriggers
+  scrollBar.destroy(scrollBar);
+  [...ScrollTrigger.getAll()].forEach((trigger) => trigger.kill());
+};
+
+const addEvents = () => {
+  // Reinitialise scrollbar and scrolltriggers
+  initSmoothScroll();
+  initShowreel();
+  imgParallaxEffect();
+  imgFluidScaleEffect();
+  projectPopUpEffect();
+};
+
 const initPageTransition = () => {
   barba.init({
     transitions: [
       {
         name: "page-transition",
-        once() {},
+        once() {
+          addEvents();
+        },
         async leave(data) {
           await transitionIn(data);
         },
@@ -352,34 +342,37 @@ const initPageTransition = () => {
       },
     ],
   });
-
-  barba.hooks.before(() => {
-    htmlEl.classList.add("is-transitioning");
-  });
-
-  barba.hooks.after(() => {
-    htmlEl.classList.remove("is-transitioning");
-  });
-
-  barba.hooks.enter(() => {
-    scrollBar.scrollTo(0, 0);
-  });
 };
+
+// ? Barba hooks
+barba.hooks.beforeLeave(() => {
+  htmlEl.classList.add("is-transitioning");
+  killEvents();
+});
+
+barba.hooks.after(() => {
+  htmlEl.classList.remove("is-transitioning");
+  addEvents();
+  scrollBar.scrollTo(0, 0);
+  window.scrollTo(0, 0);
+
+  scrollBar.update();
+  ScrollTrigger.refresh(true);
+});
 
 // ? Init
 const init = () => {
-  initSmoothScroll();
-  initShowreel();
+  // initSmoothScroll();
+  // initShowreel();
   initPageTransition();
   animMenu();
   animLinks();
-  animFeaturedBg();
   setTheme();
   themeToggle();
-  imgParallaxEffect();
+  // imgParallaxEffect();
   imgHoverEffect();
-  imgFluidScaleEffect();
-  projectPopUpEffect();
+  // imgFluidScaleEffect();
+  // projectPopUpEffect();
 };
 
 // ? Call functions on page transition

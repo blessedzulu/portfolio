@@ -1,6 +1,12 @@
+@use "../abstracts" as *;
+
 ::-webkit-scrollbar {
   width: 10px;
   cursor: pointer;
+
+  @media only screen and (hover: "hover") and (pointer: "fine") {
+    width: 0;
+  }
 }
 
 ::-webkit-scrollbar-track {
@@ -12,7 +18,8 @@
 ::-webkit-scrollbar-thumb {
   cursor: pointer;
   border: 3px solid transparent;
-  background: var(--color-scrollbar);
+  // background: var(--color-scrollbar);
+  background: transparent;
   border-radius: 100px;
   background-clip: content-box;
 
