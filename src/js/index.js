@@ -352,19 +352,13 @@ const initPageTransitions = () => {
   // Global barba hooks
 
   barba.hooks.beforeEnter(() => {
-    return new Promise(function (resolve) {
-      killEvents();
-      resolve();
-    });
+    killEvents();
   });
 
   barba.hooks.afterEnter(() => {
-    return new Promise(function (resolve) {
-      addEvents();
-      scrollToTop();
-      refreshEvents();
-      resolve();
-    });
+    addEvents();
+    scrollToTop();
+    refreshEvents();
   });
 };
 
