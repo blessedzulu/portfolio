@@ -71,10 +71,15 @@
       width: 75%;
       object-fit: cover;
       object-position: right;
+      transition: all 0.5s var(--easing);
+    }
+  }
+}
 
-      &.dark-mode {
-        filter: invert(1);
-      }
+:root {
+  &.dark-mode {
+    & .about__process-img {
+      filter: invert(1);
     }
   }
 }

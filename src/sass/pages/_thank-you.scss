@@ -1,0 +1,28 @@
+@use "../abstracts/" as *;
+
+.thank-you {
+  &__img-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__img {
+    object-fit: cover;
+    object-position: center;
+    width: 75%;
+
+    @include respond("laptop") {
+      width: 100%;
+    }
+  }
+}
+
+:root {
+  &.dark-mode {
+    & .thank-you__img {
+      filter: invert(1);
+    }
+  }
+}

@@ -22,6 +22,9 @@
     }
   }
 
+  &--next {
+  }
+
   &__image-container {
     will-change: auto;
     backface-visibility: hidden;
@@ -29,7 +32,8 @@
     transition: transform 0.25s var(--easing);
 
     &--featured,
-    &--regular {
+    &--regular,
+    &--next {
       height: 75vh;
     }
 

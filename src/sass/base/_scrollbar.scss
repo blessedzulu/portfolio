@@ -12,7 +12,7 @@
 ::-webkit-scrollbar-track {
   cursor: pointer;
   background: transparent;
-  border-radius: 100px;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -20,10 +20,20 @@
   border: 3px solid transparent;
   // background: var(--color-scrollbar);
   background: transparent;
-  border-radius: 100px;
+  border-radius: 10px;
   background-clip: content-box;
 
   &:hover {
     border-width: 2px;
   }
+}
+
+.scrollbar-track.is-custom {
+  background: rgba(0, 0, 0, 0);
+  width: 8px;
+}
+
+.scrollbar-thumb.is-custom {
+  background: rgba(var(--rgb-black), 0.375);
+  width: 4px;
 }

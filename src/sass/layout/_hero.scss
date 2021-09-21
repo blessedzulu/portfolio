@@ -52,6 +52,10 @@
   }
 }
 
-.hero--regular {
-  // height: 60vh;
+.hero.hero--small {
+  margin-bottom: var(--m-5);
+
+  @include respond("laptop") {
+    margin-bottom: var(--m-2);
+  }
 }

@@ -47,15 +47,6 @@
         transition: all 0.5s var(--easing);
       }
     }
-
-    &.menu-open {
-      &:link,
-      &:visited {
-        @include respond("laptop") {
-          // color: var(--color-white);
-        }
-      }
-    }
   }
 
   &__menu {

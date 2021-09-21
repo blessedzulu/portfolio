@@ -40,3 +40,62 @@
   })();
   t(null !== e ? e : "light");
 })();
+
+barba.hooks.beforeEnter(() => {
+  return new Promise(function (resolve) {
+    killOldScrollTriggers();
+    destroySmoothScrollbar();
+
+    resolve();
+  });
+});
+
+barba.hooks.enter(({ current }) => {
+  return new Promise(function (resolve) {
+    current.container.remove();
+
+    resolve();
+  });
+});
+
+barba.hooks.afterEnter(() => {
+  return new Promise(function (resolve) {
+    initSmoothScrollbar();
+    initScrollTriggers();
+
+    resolve();
+  });
+});
+
+// ! USEFUL
+barba.hooks.beforeEnter(() => {
+  return new Promise(function (resolve) {
+    killEvents();
+    resolve();
+  });
+});
+
+barba.hooks.enter(({ current }) => {
+  return new Promise(function (resolve) {
+    current.container.remove();
+    resolve();
+  });
+});
+
+barba.hooks.afterEnter(() => {
+  return new Promise(function (resolve) {
+    addEvents();
+    resolve();
+  });
+});
+
+// ! USEFUL
+barba.hooks.before(() => {
+  killEvents();
+});
+
+barba.hooks.after(() => {
+  addEvents();
+  refreshEvents();
+  scrollToTop();
+});

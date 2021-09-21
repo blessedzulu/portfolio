@@ -4,7 +4,6 @@ import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Plyr from "plyr";
 import barba from "@barba/core";
-import gsapCore from "gsap/gsap-core";
 
 // ? Register plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -13,7 +12,6 @@ Scrollbar.use(OverscrollPlugin);
 // ? DOM Nodes
 const htmlEl = document.querySelector("html");
 const body = document.body;
-const viewportEl = document.querySelector("#viewport");
 const overlayBody = document.querySelector(".overlay--body");
 const loader = document.querySelector(".loader");
 const loaderTransition = document.querySelector(".loader__transition");
@@ -28,44 +26,23 @@ const navLinkTheme = document.querySelector(".nav__link--theme");
 const menuItems = document.querySelectorAll(".menu__item");
 const menuLinks = document.querySelectorAll(".menu__link");
 
-const linksPlain = document.querySelectorAll(".link.link--plain");
-const linksUnderlined = document.querySelectorAll(".link.link--underline");
-
-const featuredProjects = document.querySelectorAll(".project--featured");
-const overlayFeatured = document.querySelector(".overlay--featured");
-const sectionFeatured = document.querySelector(".featured-work");
-
-const aboutProcessImgs = document.querySelectorAll(".about__process-img");
-
 const projects = document.querySelectorAll(".project");
-const projectsRegular = document.querySelectorAll(".project--regular");
-
-const projectImgContainers = document.querySelectorAll(
-  ".project__image-container"
-);
-const projectImgContainersRegular = document.querySelectorAll(
-  ".project__image-container--regular"
-);
-const projectImgContainersFeatured = document.querySelectorAll(
-  ".project__image-container--featured"
-);
-const projectImgContainersFluid = document.querySelectorAll(
-  ".project__image-container--fluid"
-);
 const projectImgs = document.querySelectorAll(".project__image-container img");
+
+// ? Helper functions
+const isMobile = () => matchMedia("(hover: none), (pointer: coarse)").matches;
 
 // ? Smooth scroll setup
 let scrollBar;
 
 const initSmoothScroll = () => {
-  const touch = matchMedia("(hover: none), (pointer: coarse)").matches;
+  if (isMobile()) return;
 
-  if (touch) return;
-
+  const viewportEl = document.querySelector("#viewport");
   viewportEl.classList.add("not-touch");
 
   // * Init scrollbar
-  scrollBar = Scrollbar.init(document.querySelector("#viewport"), {
+  scrollBar = Scrollbar.init(viewportEl, {
     damping: 0.075,
 
     plugins: {
@@ -93,6 +70,10 @@ const initSmoothScroll = () => {
 
   // * Update scrollTrigger when scrollBar updates
   scrollBar.addListener(ScrollTrigger.update);
+
+  // Customise scrollbar
+  document.querySelector(".scrollbar-track").classList.add("is-custom");
+  document.querySelector(".scrollbar-thumb").classList.add("is-custom");
 };
 
 // ? Menu open and close animations
@@ -124,7 +105,6 @@ const animMenu = () => {
 
     menuTl.reversed(!menuTl.reversed());
     body.classList.toggle("menu-open");
-    navLinkBlessed.classList.toggle("menu-open");
     navItemTheme.classList.toggle("u-hidden");
     overlayBody.classList.toggle("u-hidden");
   });
@@ -132,18 +112,18 @@ const animMenu = () => {
   overlayBody.addEventListener("click", () => {
     menuTl.reversed(!menuTl.reversed());
     body.classList.toggle("menu-open");
-    navLinkBlessed.classList.toggle("menu-open");
     navItemTheme.classList.toggle("u-hidden");
     overlayBody.classList.toggle("u-hidden");
   });
 
-  menuLinks.forEach((link) => {
+  [...menuLinks, navLinkBlessed].forEach((link) => {
     link.addEventListener("click", (e) => {
-      menuTl.reversed(!menuTl.reversed());
-      body.classList.toggle("menu-open");
-      navLinkBlessed.classList.toggle("menu-open");
-      navItemTheme.classList.toggle("u-hidden");
-      overlayBody.classList.toggle("u-hidden");
+      if (!overlayBody.classList.contains("u-hidden")) {
+        menuTl.reversed(!menuTl.reversed());
+        body.classList.toggle("menu-open");
+        navItemTheme.classList.toggle("u-hidden");
+        overlayBody.classList.toggle("u-hidden");
+      }
     });
   });
 
@@ -164,30 +144,21 @@ let darkMode = JSON.parse(localStorage.getItem("darkMode"));
 const lightsOn = () => {
   document.documentElement.classList.remove("dark-mode");
   navLinkTheme.textContent = "Lights Out";
-  overlayBody.classList.remove("dark-mode");
-
-  [...aboutProcessImgs].forEach((img) => {
-    img.classList.remove("dark-mode");
-  });
-
   localStorage.setItem("darkMode", null);
 };
 
 const lightsOut = () => {
   document.documentElement.classList.add("dark-mode");
-  overlayBody.classList.add("dark-mode");
   navLinkTheme.textContent = "Lights On";
-
-  [...aboutProcessImgs].forEach((img) => {
-    img.classList.add("dark-mode");
-  });
-
   localStorage.setItem("darkMode", true);
 };
 
-const toggleTheme = (mode = "light-mode") => {
-  if (mode === "dark-mode") {
-  }
+const toggleTheme = (mode) => {
+  const el = document.documentElement.classList;
+  console.log(mode);
+  mode === "dark" ? el.add(`dark-mode`) : el.remove(`dark-mode`);
+  navLinkTheme.textContent = `Lights ${mode === "light" ? "Out" : "On"}`;
+  localStorage.setItem("darkMode", `${mode === "light" ? null : true}`);
 };
 
 const themeToggle = () => {
@@ -196,15 +167,20 @@ const themeToggle = () => {
 
     darkMode = JSON.parse(localStorage.getItem("darkMode"));
     darkMode === null ? lightsOut() : lightsOn();
+    // darkMode === null ? toggleTheme("dark") : toggleTheme("dark");
   });
 };
 
 const setTheme = () => {
   darkMode === null ? lightsOn() : lightsOut();
+  // darkMode === null ? toggleTheme("dark") : toggleTheme("light");
 };
 
 // ? Link hover animations
 const animLinks = () => {
+  const linksPlain = document.querySelectorAll(".link.link--plain");
+  const linksUnderlined = document.querySelectorAll(".link.link--underline");
+
   [...linksPlain].forEach((link) => {
     link.addEventListener("mouseleave", () => {
       link.classList.add("link--plain--anim");
@@ -228,28 +204,39 @@ const animLinks = () => {
 
 // ? Parallax image scrolling effect
 const imgParallaxEffect = () => {
+  const projectImgContainersRegular = document.querySelectorAll(
+    ".project__image-container--regular"
+  );
+  const projectImgContainersFeatured = document.querySelectorAll(
+    ".project__image-container--featured"
+  );
+
   [...projectImgContainersRegular, ...projectImgContainersFeatured].forEach(
     (container) => {
       const img = container.querySelector(".project__image");
 
-      gsap.set(img, { scale: 1.5 });
-
-      gsap.to(img, {
-        yPercent: 25,
-        scrollTrigger: {
-          trigger: container,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-          // markers: true,
-        },
-      });
+      const tl = gsap
+        .timeline()
+        .set(img, { scale: 1.5 })
+        .to(img, {
+          yPercent: 25,
+          scrollTrigger: {
+            trigger: container,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          },
+        });
     }
   );
 };
 
 // ? Fluid image scale on scroll effect
 const imgFluidScaleEffect = () => {
+  const projectImgContainersFluid = document.querySelectorAll(
+    ".project__image-container--fluid"
+  );
+
   [...projectImgContainersFluid].forEach((container) => {
     const imgFluid = container.querySelector(".project__image--fluid");
 
@@ -260,7 +247,6 @@ const imgFluidScaleEffect = () => {
         start: "top bottom",
         end: "top top",
         scrub: 1,
-        // markers: true,
       },
     });
   });
@@ -271,6 +257,8 @@ const imgHoverEffect = () => {};
 
 // ? Project grow on scroll effect
 const projectPopUpEffect = () => {
+  const projectsRegular = document.querySelectorAll(".project--regular");
+
   [...projectsRegular].forEach((project) => {
     gsap.to(project, {
       scrollTrigger: {
@@ -279,105 +267,120 @@ const projectPopUpEffect = () => {
         end: "bottom top",
         toggleClass: "anim-in",
         // toggleActions: "play pause pause reset",
-        markers: true,
       },
     });
   });
 };
 
 // ? Initialise video player
+let plyr;
+
 const initShowreel = () => {
-  const plyr = new Plyr("#player", {
+  plyr = new Plyr("#player", {
     title: "Portfolio Showreel",
-    controls: ["play-large", "fullscreen"],
+    controls: ["play-large", "play", "fullscreen", "settings"],
+    // settings: ["quality", "duration"],
   });
 };
 
 // ? Page transitions
-const transitionIn = (data) => {
+const transitionIn = ({ container }) => {
   return gsap
     .timeline({
       defaults: { duration: 1, ease: "power4.out" },
     })
-    .to(loaderTransition, { top: 0 });
+    .to(loaderTransition, { top: 0 })
+    .to(container, { y: -50, autoAlpha: 0 }, 0.125);
 };
 
-const transitionOut = (data) => {
+const transitionOut = ({ container }) => {
   return gsap
     .timeline()
     .to(loaderTransition, { top: "-100%" })
     .set(loaderTransition, { top: "100%" })
-    .from(data.next.container, { y: 50, autoAlpha: 0 });
+    .from(container, { y: 50, autoAlpha: 0 });
 };
 
 const killEvents = () => {
   // Kill scrollbar and scrolltriggers
-  scrollBar.destroy(scrollBar);
-  [...ScrollTrigger.getAll()].forEach((trigger) => trigger.kill());
+  ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+  scrollBar && scrollBar.destroy(scrollBar);
+  plyr && plyr.destroy();
+};
+
+const scrollToTop = () => {
+  scrollBar && scrollBar.scrollTo(0, 0);
+  window.scrollTo(0, 0);
+};
+
+const refreshEvents = () => {
+  scrollBar && scrollBar.update();
+  ScrollTrigger.refresh(true);
 };
 
 const addEvents = () => {
   // Reinitialise scrollbar and scrolltriggers
   initSmoothScroll();
-  initShowreel();
   imgParallaxEffect();
   imgFluidScaleEffect();
   projectPopUpEffect();
+  animLinks();
+  initShowreel();
 };
 
-const initPageTransition = () => {
+const initPageTransitions = () => {
+  // Barba transitions
   barba.init({
+    preventRunning: true,
     transitions: [
       {
         name: "page-transition",
         once() {
-          addEvents();
+          // addEvents();
         },
-        async leave(data) {
-          await transitionIn(data);
+        async leave({ current }) {
+          await transitionIn(current);
         },
-        enter(data) {
-          transitionOut(data);
+        enter({ next }) {
+          transitionOut(next);
         },
       },
     ],
   });
+
+  // Global barba hooks
+  barba.hooks.beforeEnter(() => {
+    return new Promise(function (resolve) {
+      killEvents();
+      resolve();
+    });
+  });
+
+  barba.hooks.enter(({ current }) => {
+    return new Promise(function (resolve) {
+      current.container.remove();
+      resolve();
+    });
+  });
+
+  barba.hooks.afterEnter(() => {
+    return new Promise(function (resolve) {
+      addEvents();
+      scrollToTop();
+      refreshEvents();
+      resolve();
+    });
+  });
 };
-
-// ? Barba hooks
-barba.hooks.beforeLeave(() => {
-  htmlEl.classList.add("is-transitioning");
-  killEvents();
-});
-
-barba.hooks.after(() => {
-  htmlEl.classList.remove("is-transitioning");
-  addEvents();
-  scrollBar.scrollTo(0, 0);
-  window.scrollTo(0, 0);
-
-  scrollBar.update();
-  ScrollTrigger.refresh(true);
-});
 
 // ? Init
-const init = () => {
-  // initSmoothScroll();
-  // initShowreel();
-  initPageTransition();
-  animMenu();
-  animLinks();
+function init() {
   setTheme();
+  initSmoothScroll();
+  initPageTransitions();
+  animMenu();
   themeToggle();
-  // imgParallaxEffect();
   imgHoverEffect();
-  // imgFluidScaleEffect();
-  // projectPopUpEffect();
-};
+}
 
-// ? Call functions on page transition
-// barba.hooks.beforeEnter((data) => {
-//   init();
-// });
-
-window.addEventListener("DOMContentLoaded", init);
+document.addEventListener("DOMContentLoaded", init);

@@ -3,8 +3,11 @@
 // ? Custom Properties
 :root {
   // ? Colors
-  --color-black: #000;
-  --color-white: #fff;
+  --rgb-white: 255, 255, 255;
+  --rgb-black: 0, 0, 0;
+
+  --color-black: rgb(var(--rgb-black));
+  --color-white: rgb(var(--rgb-white));
 
   --color-grey: #5e5e5e;
   --color-light-grey: #e5e5e5;
@@ -19,8 +22,8 @@
   --behance-blue: #1769ff;
 
   &.dark-mode {
-    --color-black: #fff;
-    --color-white: #000;
+    --rgb-white: 0, 0, 0;
+    --rgb-black: 255, 255, 255;
     --color-placeholder: #5a5a5a;
     --color-scrollbar: var(--color-grey);
   }
