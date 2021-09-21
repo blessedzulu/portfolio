@@ -331,7 +331,7 @@ const addEvents = () => {
 const initPageTransitions = () => {
   // Barba transitions
   barba.init({
-    // timeout: 10000,
+    prefetchIgnore: true,
     preventRunning: true,
     transitions: [
       {
