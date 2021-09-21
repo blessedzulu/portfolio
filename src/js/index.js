@@ -351,13 +351,6 @@ const initPageTransitions = () => {
 
   // Global barba hooks
 
-  barba.hooks.beforeLeave(() => {
-    return new Promise(function (resolve) {
-      htmlEl.classList.add("is-transitioning");
-      resolve();
-    });
-  });
-
   barba.hooks.beforeEnter(() => {
     return new Promise(function (resolve) {
       killEvents();
@@ -367,7 +360,6 @@ const initPageTransitions = () => {
 
   barba.hooks.afterEnter(() => {
     return new Promise(function (resolve) {
-      htmlEl.classList.remove("is-transitioning");
       addEvents();
       scrollToTop();
       refreshEvents();
