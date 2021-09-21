@@ -24,12 +24,16 @@
     border: 2px solid var(--color-placeholder);
     font-size: inherit;
     font-family: inherit;
-    background: transparent;
+    background: var(--color-white);
     color: var(--color-black);
     transition: all 0.25s var(--easing);
 
+    &:hover {
+      border-color: rgba(var(--rgb-black), 0.5);
+    }
+
     &:focus {
-      background: transparent;
+      background: var(--color-white);
       outline: none;
       border: 2px solid var(--color-black);
     }
@@ -44,8 +48,6 @@
   }
 
   & .btn {
-    // align-self: start;
-
     @include respond("tablet") {
       align-self: flex-end;
     }
