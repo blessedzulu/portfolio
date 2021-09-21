@@ -354,6 +354,7 @@ const initPageTransitions = () => {
   barba.hooks.beforeLeave(() => {
     return new Promise(function (resolve) {
       htmlEl.classList.add("is-transitioning");
+      resolve();
     });
   });
 
