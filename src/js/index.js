@@ -390,4 +390,4 @@ function init() {
   imgHoverEffect();
 }
 
-document.addEventListener("DOMContentLoaded", init);
+window.addEventListener("DOMContentLoaded", init);
