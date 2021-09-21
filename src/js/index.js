@@ -350,7 +350,7 @@ const initPageTransitions = () => {
 
     requestError(trigger, action, url, response) {
       // go to a custom 404 page if the user click on a link that return a 404 response status
-      if (action === "click" && response.status && response.status === 404) {
+      if (action === "click" && response.status === 404) {
         console.log("404");
 
         barba.go("../404.html");
