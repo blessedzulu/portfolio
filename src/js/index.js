@@ -331,7 +331,7 @@ const addEvents = () => {
 const initPageTransitions = () => {
   // Barba transitions
   barba.init({
-    timeout: 5000,
+    timeout: 10000,
     preventRunning: true,
     transitions: [
       {
@@ -347,19 +347,6 @@ const initPageTransitions = () => {
         },
       },
     ],
-
-    requestError(trigger, action, url, response) {
-      // go to a custom 404 page if the user click on a link that return a 404 response status
-      if (action === "click" && response.status === 404) {
-        console.log("404");
-
-        barba.go("../404.html");
-      }
-
-      // prevent Barba from redirecting the user to the requested URL
-      // this is equivalent to e.preventDefault() in this context
-      return false;
-    },
   });
 
   // Global barba hooks
