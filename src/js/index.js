@@ -304,17 +304,17 @@ const transitionOut = ({ container }) => {
 const killEvents = () => {
   // Kill scrollbar and scrolltriggers
   ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-  scrollBar && scrollBar.destroy(scrollBar);
-  plyr && plyr.destroy();
+  scrollBar?.destroy(scrollBar);
+  plyr?.destroy();
 };
 
 const scrollToTop = () => {
-  scrollBar && scrollBar.scrollTo(0, 0);
+  scrollBar?.scrollTo(0, 0);
   window.scrollTo(0, 0);
 };
 
 const refreshEvents = () => {
-  scrollBar && scrollBar.update();
+  scrollBar?.update();
   ScrollTrigger.refresh(true);
 };
 
