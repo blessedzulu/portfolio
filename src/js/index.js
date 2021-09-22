@@ -279,7 +279,6 @@ const initShowreel = () => {
   plyr = new Plyr("#player", {
     title: "Portfolio Showreel",
     controls: ["play-large", "play", "fullscreen", "settings"],
-    // settings: ["quality", "duration"],
   });
 };
 
