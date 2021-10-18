@@ -331,6 +331,7 @@ const initPageTransitions = () => {
   // Barba transitions
   barba.init({
     preventRunning: true,
+    timeout: 5000,
     transitions: [
       {
         name: "page-transition",
