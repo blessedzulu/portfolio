@@ -4,10 +4,12 @@ import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Plyr from "plyr";
 import barba from "@barba/core";
+// import barbaPrefetch from "@barba/prefetch";
 
 // ? Register plugins
 gsap.registerPlugin(ScrollTrigger);
 Scrollbar.use(OverscrollPlugin);
+// barba.use(barbaPrefetch);
 
 // ? DOM Nodes
 const htmlEl = document.querySelector("html");
@@ -325,10 +327,17 @@ const refreshEvents = () => {
   ScrollTrigger.refresh(true);
 };
 
+const delay = (n = 2000) => {
+  return new Promise((res) => {
+    setTimeout(() => res(), n);
+  });
+};
+
 const initPageTransitions = () => {
   // Barba transitions
   barba.init({
     preventRunning: true,
+    sync: true,
     transitions: [
       {
         name: "page-transition",
@@ -336,7 +345,10 @@ const initPageTransitions = () => {
           // addEvents();
         },
         async leave({ current }) {
-          await transitionIn(current);
+          const done = this.async();
+          transitionIn(current);
+          await delay(1000);
+          done();
         },
         enter({ next }) {
           transitionOut(next);
