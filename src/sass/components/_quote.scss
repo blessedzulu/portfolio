@@ -23,13 +23,15 @@
     z-index: 1;
 
     &::before {
+      // content: "\201C";
       content: "\201C";
       display: inline-block;
       position: absolute;
-      left: -4rem;
-      top: 3rem;
+      left: -5rem;
+      top: 5rem;
       z-index: -1;
-      font-family: serif;
+      font-family: "Acari Sans", sans-serif;
+      font-weight: var(--fw-semibold);
       font-size: 25rem;
       color: var(--color-black);
       opacity: 0.075;
