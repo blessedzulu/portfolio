@@ -327,17 +327,10 @@ const refreshEvents = () => {
   ScrollTrigger.refresh(true);
 };
 
-const delay = (n = 2000) => {
-  return new Promise((res) => {
-    setTimeout(() => res(), n);
-  });
-};
-
 const initPageTransitions = () => {
   // Barba transitions
   barba.init({
     preventRunning: true,
-    sync: true,
     transitions: [
       {
         name: "page-transition",
@@ -345,10 +338,7 @@ const initPageTransitions = () => {
           // addEvents();
         },
         async leave({ current }) {
-          const done = this.async();
-          transitionIn(current);
-          await delay(1000);
-          done();
+          await transitionIn(current);
         },
         enter({ next }) {
           transitionOut(next);
