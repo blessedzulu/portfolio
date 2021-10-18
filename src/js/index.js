@@ -74,6 +74,9 @@ const initSmoothScroll = () => {
   // Customise scrollbar
   document.querySelector(".scrollbar-track").classList.add("is-custom");
   document.querySelector(".scrollbar-thumb").classList.add("is-custom");
+
+  // * Scroll to top
+  scrollBar.scrollTo(0, 0);
 };
 
 // ? Menu open and close animations
@@ -307,14 +310,9 @@ const killEvents = () => {
   plyr?.destroy();
 };
 
-const scrollToTop = () => {
-  scrollBar?.scrollTo(0, 0);
-  window.scrollTo(0, 0);
-};
-
 const refreshEvents = () => {
   scrollBar?.update();
-  ScrollTrigger.refresh(true);
+  ScrollTrigger.refresh();
 };
 
 const addEvents = () => {
@@ -348,14 +346,12 @@ const initPageTransitions = () => {
   });
 
   // Global barba hooks
-
   barba.hooks.beforeEnter(() => {
     killEvents();
   });
 
   barba.hooks.afterEnter(() => {
     addEvents();
-    scrollToTop();
     refreshEvents();
   });
 };
