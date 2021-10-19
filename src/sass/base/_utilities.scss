@@ -150,3 +150,8 @@
   opacity: 0;
   visibility: hidden;
 }
+
+.u-no-display {
+  @extend .u-hidden;
+  display: none;
+}
