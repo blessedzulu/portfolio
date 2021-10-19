@@ -4,12 +4,10 @@ import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Plyr from "plyr";
 import barba from "@barba/core";
-// import barbaPrefetch from "@barba/prefetch";
 
 // ? Register plugins
 gsap.registerPlugin(ScrollTrigger);
 Scrollbar.use(OverscrollPlugin);
-// barba.use(barbaPrefetch);
 
 // ? DOM Nodes
 const htmlEl = document.querySelector("html");
@@ -371,3 +369,8 @@ function init() {
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
+// todo: Changes and fixes
+// task: 1. Fix parallax images
+// task: 2. Fix selected project image hover effect
+// task: 3. Fix case study images hover
