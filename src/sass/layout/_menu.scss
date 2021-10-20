@@ -9,23 +9,18 @@
   background: var(--color-white);
   position: fixed;
   top: 0;
-  height: 100vh;
+  right: 0;
+  min-height: 100vh;
   z-index: 98;
-  right: -100vw;
-  width: 100vw;
+  transform: translateX(100%);
+  width: 100%;
 
   @include respond("laptop") {
-    right: -45vw;
-    width: 45vw;
+    width: 45%;
   }
 
   @include respond("desktop") {
-    right: -40vw;
-    width: 40vw;
-  }
-
-  &.open {
-    right: 0;
+    width: 40%;
   }
 
   &__list {

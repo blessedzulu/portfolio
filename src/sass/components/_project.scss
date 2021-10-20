@@ -26,6 +26,8 @@
   }
 
   &__image-container {
+    position: relative;
+
     will-change: auto;
     backface-visibility: hidden;
     overflow: hidden;
@@ -43,15 +45,7 @@
 
       &:hover {
         transform: scale(0.975);
-
-        // & .project__image {
-        //   transform: scale(2);
-        // }
       }
-    }
-
-    &--fluid {
-      // min-height: 100vh;
     }
   }
 
@@ -62,10 +56,18 @@
   }
 
   &__image {
-    height: 100%;
+    position: absolute;
+    top: -20%;
+    height: 120%;
     width: 100%;
     object-fit: cover;
     object-position: center;
     // transition: all 0.5s var(--easing);
+
+    &--fluid {
+      position: relative;
+      height: 100%;
+      top: initial;
+    }
   }
 }

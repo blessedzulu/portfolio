@@ -81,16 +81,16 @@ const initSmoothScroll = () => {
 
 // ? Menu open and close animations
 const animMenu = () => {
-  gsap.set(menuItems, { translateX: 50, autoAlpha: 0 });
+  gsap.set(menuItems, { x: 50, autoAlpha: 0 });
 
   const menuTl = gsap
     .timeline({
       reversed: true,
-      defaults: { duration: 1, ease: "Expo.power2" },
+      defaults: { duration: 1, ease: "circ" },
     })
-    .to(menu, { duration: 0.5, right: 0 })
-    .to(menuBarTop, { duration: 0.5, translateY: 3, rotate: "135deg" }, 0)
-    .to(menuBarBottom, { duration: 0.5, translateY: -3, rotate: "-135deg" }, 0)
+    .to(menu, { duration: 0.5, x: 0 })
+    .to(menuBarTop, { duration: 0.5, y: 3, rotate: 135 }, 0)
+    .to(menuBarBottom, { duration: 0.5, y: -3, rotate: -135 }, 0)
     .to(navLinkContact, { duration: 0.25, autoAlpha: 0 }, 0)
     .to(
       menuItems,
@@ -218,18 +218,16 @@ const imgParallaxEffect = () => {
     (container) => {
       const img = container.querySelector(".project__image");
 
-      const tl = gsap
-        .timeline()
-        .set(img, { scale: 1.5 })
-        .to(img, {
-          yPercent: 25,
-          scrollTrigger: {
-            trigger: container,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true,
-          },
-        });
+      return gsap.to(img, {
+        yPercent: 20,
+        ease: "none",
+        scrollTrigger: {
+          trigger: container,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
     }
   );
 };
@@ -291,15 +289,15 @@ const transitionIn = ({ container }) => {
     .timeline({
       defaults: { duration: 1, ease: "power4.out" },
     })
-    .to(loaderTransition, { top: 0 })
+    .to(loaderTransition, { yPercent: -100 })
     .to(container, { y: -50, autoAlpha: 0 }, 0.125);
 };
 
 const transitionOut = ({ container }) => {
   return gsap
     .timeline()
-    .to(loaderTransition, { top: "-100%" })
-    .set(loaderTransition, { top: "100%" })
+    .to(loaderTransition, { yPercent: -200 })
+    .set(loaderTransition, { yPercent: 0 })
     .from(container, { y: 50, autoAlpha: 0 });
 };
 
