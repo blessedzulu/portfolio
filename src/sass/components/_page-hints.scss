@@ -1,7 +1,7 @@
 @use "../abstracts" as *;
 
 .page-hints {
-  position: fixed;
+  position: absolute;
   top: var(--m-5);
   left: 0;
   width: 100%;

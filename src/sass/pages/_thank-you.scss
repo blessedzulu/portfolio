@@ -3,15 +3,12 @@
 .thank-you {
   &__img-container {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 
   &__img {
     object-fit: cover;
     object-position: center;
-    width: 75%;
+    width: 100%;
 
     @include respond("laptop") {
       width: 100%;
