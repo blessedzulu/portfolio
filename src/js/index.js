@@ -294,16 +294,16 @@ const transitionIn = ({ container }) => {
     .timeline({
       defaults: { duration: 1, ease: "power4.out" },
     })
-    .to(loaderTransition, { yPercent: -100 })
-    .to(container, { y: -50, autoAlpha: 0 }, 0.125);
+    .to(loaderTransition, { yPercent: 100 })
+    .to(container, { y: 50, autoAlpha: 0 }, 0.125);
 };
 
 const transitionOut = ({ container }) => {
   return gsap
     .timeline()
-    .to(loaderTransition, { yPercent: -200 })
+    .to(loaderTransition, { yPercent: 200 })
     .set(loaderTransition, { yPercent: 0 })
-    .from(container, { y: 50, autoAlpha: 0 });
+    .from(container, { y: -50, autoAlpha: 0 });
 };
 
 const killEvents = () => {
