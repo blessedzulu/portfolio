@@ -297,7 +297,7 @@ const transitionOut = ({ container }) => {
   return gsap
     .timeline()
     .to(loaderTransition, { yPercent: -200 })
-    .set(loaderTransition, { yPercent: 0, top: 0 })
+    .set(loaderTransition, { top: 0, yPercent: 0 })
     .from(container, { y: 50, autoAlpha: 0 });
 };
 
