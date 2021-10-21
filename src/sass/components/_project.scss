@@ -22,9 +22,6 @@
     }
   }
 
-  &--next {
-  }
-
   &__image-container {
     position: relative;
 
@@ -34,14 +31,12 @@
     transition: transform 0.25s var(--easing);
 
     &--featured,
-    &--regular,
     &--next {
-      height: 75vh;
-    }
+      height: 50rem; // DEV
 
-    &--featured {
-      display: flex;
-      justify-content: center;
+      @include respond("laptop") {
+        height: 75vh;
+      }
 
       &:hover {
         transform: scale(0.975);
@@ -56,18 +51,26 @@
   }
 
   &__image {
-    position: absolute;
-    top: -20%;
-    height: 120%;
+    height: 100%;
     width: 100%;
     object-fit: cover;
     object-position: center;
-    // transition: all 0.5s var(--easing);
 
     &--fluid {
       position: relative;
       height: 100%;
       top: initial;
+    }
+
+    &--regular {
+      height: auto;
+    }
+
+    &--featured,
+    &--next {
+      position: absolute;
+      top: -20%;
+      height: 120%;
     }
   }
 }

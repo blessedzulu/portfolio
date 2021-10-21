@@ -213,23 +213,28 @@ const imgParallaxEffect = () => {
   const projectImgContainersFeatured = document.querySelectorAll(
     ".project__image-container--featured"
   );
-
-  [...projectImgContainersRegular, ...projectImgContainersFeatured].forEach(
-    (container) => {
-      const img = container.querySelector(".project__image");
-
-      return gsap.to(img, {
-        yPercent: 20,
-        ease: "none",
-        scrollTrigger: {
-          trigger: container,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-    }
+  const projectImgContainersNext = document.querySelectorAll(
+    ".project__image-container--next"
   );
+
+  [
+    ...projectImgContainersRegular,
+    ...projectImgContainersNext,
+    ...projectImgContainersFeatured,
+  ].forEach((container) => {
+    const img = container.querySelector(".project__image");
+
+    return gsap.to(img, {
+      yPercent: 20,
+      ease: "none",
+      scrollTrigger: {
+        trigger: container,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+      },
+    });
+  });
 };
 
 // ? Fluid image scale on scroll effect
@@ -369,6 +374,3 @@ function init() {
 document.addEventListener("DOMContentLoaded", init);
 
 // todo: Changes and fixes
-// task: 1. Fix parallax images
-// task: 2. Fix selected project image hover effect
-// task: 3. Fix case study images hover
