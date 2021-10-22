@@ -220,9 +220,9 @@ const createParallaxEffect = (el, container, yPercent) => {
 };
 
 const imgParallaxEffect = () => {
-  const projectImgContainersRegular = document.querySelectorAll(
+  /* const projectImgContainersRegular = document.querySelectorAll(
     ".project__image-container--regular"
-  );
+  ); */
   const projectImgContainersFeatured = document.querySelectorAll(
     ".project__image-container--featured"
   );
@@ -237,10 +237,10 @@ const imgParallaxEffect = () => {
     }
   );
 
-  [...projectImgContainersRegular].forEach((container) => {
+  /* [...projectImgContainersRegular].forEach((container) => {
     const img = container.querySelector(".project__image");
     createParallaxEffect(img, container, 10);
-  });
+  }); */
 };
 
 // ? Fluid image scale on scroll effect
