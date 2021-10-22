@@ -22,8 +22,9 @@
 .loader {
   &__transition {
     position: fixed;
-    top: -100%;
+    top: 0;
     left: 0;
+    transform: translateY(100%);
     z-index: 105;
     width: 100vw;
     height: 100vh;

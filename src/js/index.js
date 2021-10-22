@@ -206,6 +206,19 @@ const animLinks = () => {
 };
 
 // ? Parallax image scrolling effect
+const createParallaxEffect = (el, container, yPercent) => {
+  return gsap.to(el, {
+    yPercent,
+    ease: "none",
+    scrollTrigger: {
+      trigger: container,
+      start: "top bottom",
+      end: "bottom top",
+      scrub: true,
+    },
+  });
+};
+
 const imgParallaxEffect = () => {
   const projectImgContainersRegular = document.querySelectorAll(
     ".project__image-container--regular"
@@ -217,23 +230,16 @@ const imgParallaxEffect = () => {
     ".project__image-container--next"
   );
 
-  [
-    ...projectImgContainersRegular,
-    ...projectImgContainersNext,
-    ...projectImgContainersFeatured,
-  ].forEach((container) => {
-    const img = container.querySelector(".project__image");
+  [...projectImgContainersNext, ...projectImgContainersFeatured].forEach(
+    (container) => {
+      const img = container.querySelector(".project__image");
+      createParallaxEffect(img, container, 20);
+    }
+  );
 
-    return gsap.to(img, {
-      yPercent: 20,
-      ease: "none",
-      scrollTrigger: {
-        trigger: container,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
+  [...projectImgContainersRegular].forEach((container) => {
+    const img = container.querySelector(".project__image");
+    createParallaxEffect(img, container, 10);
   });
 };
 
@@ -294,16 +300,16 @@ const transitionIn = ({ container }) => {
     .timeline({
       defaults: { duration: 1, ease: "power4.out" },
     })
-    .to(loaderTransition, { yPercent: 100 })
-    .to(container, { y: 50, autoAlpha: 0 }, 0.125);
+    .to(loaderTransition, { yPercent: -100 })
+    .to(container, { y: -50, autoAlpha: 0 }, 0.125);
 };
 
 const transitionOut = ({ container }) => {
   return gsap
     .timeline()
-    .to(loaderTransition, { yPercent: 200 })
+    .to(loaderTransition, { yPercent: -200 })
     .set(loaderTransition, { yPercent: 0 })
-    .from(container, { y: -50, autoAlpha: 0 });
+    .from(container, { y: 50, autoAlpha: 0 });
 };
 
 const killEvents = () => {

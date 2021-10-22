@@ -24,18 +24,22 @@
 
   &__image-container {
     position: relative;
-
     will-change: auto;
     backface-visibility: hidden;
     overflow: hidden;
     transition: transform 0.25s var(--easing);
+
+    &--regular {
+      // height: auto;
+      width: 100%;
+    }
 
     &--featured,
     &--next {
       height: 50rem; // DEV
 
       @include respond("laptop") {
-        height: 75vh;
+        height: 75vh; // DEV
       }
 
       &:hover {
@@ -59,11 +63,14 @@
     &--fluid {
       position: relative;
       height: 100%;
+      width: 100%;
       top: initial;
     }
 
     &--regular {
-      height: auto;
+      position: absolute;
+      top: -10%;
+      height: 110%;
     }
 
     &--featured,
