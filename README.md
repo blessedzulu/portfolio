@@ -1,34 +1,34 @@
 # portfolio
 
-## :wave: Intro
+## Intro :wave: 
 
-This is versio 1 of my personal website. It is built from scratch using plain old HTML, CSS/SASS and JavaScript. The animations are powered by [https://greensock.com/gsap/](GSAP) and the transitions by [https://barba.js.org/](Barba.js).
+This is version 1 of my personal website. It is built from scratch using plain old HTML, CSS/SASS and JavaScript. The animations are powered by [GSAP](https://greensock.com/gsap/) and the transitions by [Barba.js](https://barba.js.org/).
 
-## :nut_and_bolt: Setup
+## Setup & Tooling :nut_and_bolt:
 
 ### Prerequisites
 
-[https://nodejs.org/](Node.js) v14+
+1. [Node.js](https://nodejs.org/) v14+
 
-### Steps
+### Development Setup
 
 1. Clone Repository
-
-   `git clone https://github.com/blessedzulu/portfolio.git`
+   
+		git clone https://github.com/blessedzulu/portfolio.git
 
 2. Open Project
-
-   `cd portfolio`
+	
+		cd portfolio
 
 3. Install Dependencies
-
-   `npm install`
+  
+  		npm install
 
 4. Start Development Server
+   
+		npm start
 
-   `npm start`
-
-## :pencil: Notes
+## Notes :pencil:
 
 I built this website after learning and becoming proficient in the fundamental frontend technologies (HTML, CSS, JavaScript). This approach pushed me to really understand what I was doing and to do it as well as I could. It was and continues to be a huge learning experience for me.
 
