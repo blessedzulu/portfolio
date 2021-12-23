@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Plyr from "plyr";
 import barba from "@barba/core";
+import splitbee from "@splitbee/web";
 
 // ? Register plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -270,6 +271,12 @@ const initShowreel = () => {
   });
 };
 
+// ? Initialise analytics
+const initAnalytics = () => {
+  splitbee.init({ disableCookie: true });
+  splitbee.track("Contact Form Submission");
+};
+
 // ? Page transitions
 const transitionIn = ({ container }) => {
   return gsap
@@ -289,15 +296,16 @@ const transitionOut = ({ container }) => {
 };
 
 const killEvents = () => {
-  // Kill scrollbar and scrolltriggers
+  // Kill scrollbar, scrolltriggers and analytics
   ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
   scrollBar?.destroy(scrollBar);
   plyr?.destroy();
 };
 
 const addEvents = () => {
-  // Reinitialise scrollbar and scrolltriggers
+  // Reinitialise scrollbar, scrolltriggers and analytics
   initSmoothScroll();
+  initAnalytics();
   imgParallaxEffect();
   imgFluidScaleEffect();
   projectPopUpEffect();
@@ -348,11 +356,10 @@ function init() {
   setTheme();
   initSmoothScroll();
   initPageTransitions();
+  initAnalytics();
   animMenu();
   themeToggle();
   imgHoverEffect();
 }
 
 document.addEventListener("DOMContentLoaded", init);
-
-// todo: Changes and fixes
