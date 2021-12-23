@@ -273,7 +273,7 @@ const initShowreel = () => {
 
 // ? Initialise analytics
 const initAnalytics = () => {
-  splitbee.init({ disableCookie: true });
+  splitbee.init();
   splitbee.track("Contact Form Submission");
 };
 
