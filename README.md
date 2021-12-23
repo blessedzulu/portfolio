@@ -1,3 +1,5 @@
+# portfolio
+
 ## :wave: Intro
 
 This is versio 1 of my personal website. It is built from scratch using plain old HTML, CSS/SASS and JavaScript. The animations are powered by [https://greensock.com/gsap/](GSAP) and the transitions by [https://barba.js.org/](Barba.js).
