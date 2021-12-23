@@ -4,7 +4,8 @@
   "description": "My personal (and portfolio) website",
   "scripts": {
     "start": "parcel serve src/index.html --open",
-    "build": "parcel build src/index.html --no-source-maps"
+    "build": "parcel build src/index.html --no-source-maps",
+    "start:play": "parcel serve playground/index.html --open"
   },
   "keywords": [
     "portfolio",

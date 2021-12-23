@@ -1,4 +1,4 @@
-("true" !== localStorage.getItem("sb-dark-mode") &&
+/* ("true" !== localStorage.getItem("sb-dark-mode") &&
   !window.matchMedia("(prefers-color-scheme: dark)").matches) ||
   document.documentElement.classList.add("dark"),
   "false" === localStorage.getItem("sb-dark-mode") &&
@@ -99,3 +99,4 @@ barba.hooks.after(() => {
   refreshEvents();
   scrollToTop();
 });
+ */

@@ -26,9 +26,6 @@ const navLinkTheme = document.querySelector(".nav__link--theme");
 const menuItems = document.querySelectorAll(".menu__item");
 const menuLinks = document.querySelectorAll(".menu__link");
 
-const projects = document.querySelectorAll(".project");
-const projectImgs = document.querySelectorAll(".project__image-container img");
-
 // ? Helper functions
 const isMobile = () => matchMedia("(hover: none), (pointer: coarse)").matches;
 
@@ -156,14 +153,6 @@ const lightsOut = () => {
   localStorage.setItem("darkMode", true);
 };
 
-const toggleTheme = (mode) => {
-  const el = document.documentElement.classList;
-  console.log(mode);
-  mode === "dark" ? el.add(`dark-mode`) : el.remove(`dark-mode`);
-  navLinkTheme.textContent = `Lights ${mode === "light" ? "Out" : "On"}`;
-  localStorage.setItem("darkMode", `${mode === "light" ? null : true}`);
-};
-
 const themeToggle = () => {
   navLinkTheme.addEventListener("click", (e) => {
     e.preventDefault();
@@ -220,27 +209,14 @@ const createParallaxEffect = (el, container, yPercent) => {
 };
 
 const imgParallaxEffect = () => {
-  /* const projectImgContainersRegular = document.querySelectorAll(
-    ".project__image-container--regular"
-  ); */
-  const projectImgContainersFeatured = document.querySelectorAll(
-    ".project__image-container--featured"
-  );
-  const projectImgContainersNext = document.querySelectorAll(
-    ".project__image-container--next"
+  const imgContainersParallax = document.querySelectorAll(
+    ".project__image-container"
   );
 
-  [...projectImgContainersNext, ...projectImgContainersFeatured].forEach(
-    (container) => {
-      const img = container.querySelector(".project__image");
-      createParallaxEffect(img, container, 20);
-    }
-  );
-
-  /* [...projectImgContainersRegular].forEach((container) => {
+  [...imgContainersParallax].forEach((container) => {
     const img = container.querySelector(".project__image");
-    createParallaxEffect(img, container, 10);
-  }); */
+    createParallaxEffect(img, container, 20);
+  });
 };
 
 // ? Fluid image scale on scroll effect
