@@ -8,7 +8,7 @@
     "start:play": "parcel serve playground/index.html --open"
   },
   "browserslist": [
-    "> 0.5%, last 2 versions, not dead"
+    "> 0.25%, last 2 versions, not dead"
   ],
   "keywords": [
     "portfolio",
