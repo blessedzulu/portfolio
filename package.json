@@ -31,6 +31,8 @@
     "@parcel/transformer-sass": "^2.0.0-rc.0",
     "autoprefixer": "^10.4.0",
     "parcel": "^2.0.0-rc.0",
-    "postcss": "^8.4.5"
+    "postcss": "^8.4.5",
+    "postcss-uncss": "^0.17.0",
+    "uncss": "^0.17.3"
   }
 }

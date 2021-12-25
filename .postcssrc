@@ -1,8 +1,8 @@
 {
   "plugins": {
     "autoprefixer": true,
-    "@fullhuman/postcss-purgecss": {
-      "content": ["./src/*.html"],
+    "postcss-uncss": {
+      "html": ["./src/*.html"],
     }
   }
 }
