@@ -1,8 +1,5 @@
 {
   "plugins": {
     "autoprefixer": true,
-    "postcss-uncss": {
-      "html": ["./src/*.html"],
-    }
   }
 }
