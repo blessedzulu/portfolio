@@ -273,7 +273,7 @@ const initShowreel = () => {
 
 // ? Initialise analytics
 const initAnalytics = () => {
-  splitbee.init({ disableCookie: true });
+  splitbee.init();
   splitbee.track("Contact Form Submission");
 };
 
@@ -305,9 +305,9 @@ const killEvents = () => {
 const addEvents = () => {
   // Reinitialise scrollbar, scrolltriggers and analytics
   initSmoothScroll();
-  initAnalytics();
   imgParallaxEffect();
   imgFluidScaleEffect();
+  initAnalytics();
   projectPopUpEffect();
   animLinks();
   initShowreel();

@@ -2,14 +2,20 @@
 
 @font-face {
   font-family: "Acari Sans";
-  src: url("../assets/fonts/AcariSans-Regular.woff") format("woff");
-  font-weight: 400;
+  src: url("../assets/fonts/AcariSans-Regular.woff2") format("woff2"),
+    url("../assets/fonts/AcariSans-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Acari Sans";
-  src: url("../assets/fonts/AcariSans-SemiBold.woff") format("woff");
+  src: url("../assets/fonts/AcariSans-SemiBold.woff2") format("woff2"),
+    url("../assets/fonts/AcariSans-SemiBold.woff") format("woff");
   font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 
 body {
@@ -21,16 +27,8 @@ body {
 .heading {
   font-weight: var(--fw-semibold);
 
-  & .split-text {
-    // display: block;
-  }
-
   &--display {
     font-size: 11vw;
-
-    @include respond("desktop") {
-      // font-size: 15rem;
-    }
   }
 
   &--1 {
@@ -100,7 +98,6 @@ body {
 .designer,
 .developer {
   position: absolute;
-  // line-height: 0;
 }
 
 .designer {
@@ -109,28 +106,9 @@ body {
 
 .developer {
   bottom: -3vw;
-  // left: -2vw;
 
   display: flex;
   align-items: baseline;
-
-  /* & span {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 9vw;
-    height: 9vw;
-    margin-right: 1rem;
-    font-size: 8vw;
-    color: var(--color-white);
-    border-radius: 50%;
-    background: var(--color-black);
-    margin-right: 1rem;
-    
-    @include respond("tablet") {
-      margin-right: 2rem;
-    }
-  } */
 
   & span {
     font-size: 8vw;
