@@ -2,14 +2,13 @@
   "name": "portfolio",
   "version": "0.0.1",
   "description": "My personal (and portfolio) website",
+  "repository": "https://github.com/blessedzulu/portfolio.git",
   "scripts": {
     "start": "parcel serve src/index.html --open",
     "build": "parcel build src/index.html --no-source-maps",
     "start:play": "parcel serve playground/index.html --open"
   },
-  "browserslist": [
-    ">0.5%, last 2 versions, not dead"
-  ],
+  "browserslist": "defaults",
   "keywords": [
     "portfolio",
     "personal website",
@@ -27,9 +26,11 @@
     "smooth-scrollbar": "^8.6.3"
   },
   "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^4.1.3",
     "@parcel/transformer-image": "^2.0.0-rc.0",
     "@parcel/transformer-sass": "^2.0.0-rc.0",
     "autoprefixer": "^10.4.0",
-    "parcel": "^2.0.0-rc.0"
+    "parcel": "^2.0.0-rc.0",
+    "postcss": "^8.4.5"
   }
 }
