@@ -7,17 +7,12 @@
   top: 0;
   left: 0;
   transition: all 0.75s var(--easing) 0.25s;
-  // f
 
   &--body {
     z-index: 3;
 
     @include respond("laptop") {
-      background: rgba(var(--rgb-black), 0.125);
-
-      @supports (backdrop-filter: blur(2.5px)) {
-        backdrop-filter: blur(2.5px);
-      }
+      background: rgba(var(--rgb-black), 0.175);
     }
   }
 
