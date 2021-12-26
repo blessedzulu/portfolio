@@ -9,8 +9,8 @@
           },
           "removeUselessDefs": false,
           "cleanupIDs": {
-            "remove": false,
-            "minify": true
+            "minify": true,
+            "remove": false
           }
         }
       }
