@@ -273,7 +273,7 @@ const initShowreel = () => {
 
 // ? Initialise analytics
 const initAnalytics = () => {
-  splitbee.init();
+  splitbee.init({ scriptUrl: "/bee.js", apiUrl: "/_hive" });
   splitbee.track("Contact Form Submission");
 };
 
