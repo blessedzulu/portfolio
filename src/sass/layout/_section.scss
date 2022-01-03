@@ -1,6 +1,8 @@
 @use "../abstracts/" as *;
 
 section {
+  position: relative;
+
   &:not(:last-of-type) {
     margin-bottom: var(--m-5);
 

@@ -19,7 +19,7 @@
   justify-content: center;
   min-height: 100vh;
 
-  margin: 0; // Reset margin bottom
+  margin-bottom: 0; // Reset margin bottom
   padding: 0; // Reset padding top
 }
 
@@ -29,4 +29,17 @@
   @include respond("laptop") {
     margin-bottom: var(--m-2);
   }
+}
+
+.hero__scroll-down {
+  position: absolute;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.scroll-down__icon {
+  width: 4rem;
+  height: 4rem;
+  animation: floatAnim 2.5s var(--easing) infinite;
 }
