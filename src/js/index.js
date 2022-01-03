@@ -2,7 +2,6 @@ import Scrollbar from "smooth-scrollbar";
 import OverscrollPlugin from "smooth-scrollbar/plugins/overscroll";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import Plyr from "plyr";
 import barba from "@barba/core";
 import splitbee from "@splitbee/web";
 
@@ -264,17 +263,9 @@ const projectPopUpEffect = () => {
 // ? Initialise video player
 let plyr;
 
-const initShowreel = () => {
-  plyr = new Plyr("#player", {
-    title: "Portfolio Showreel",
-    controls: ["play-large", "play", "fullscreen", "settings"],
-  });
-};
-
 // ? Initialise analytics
 const initAnalytics = () => {
   splitbee.init({ scriptUrl: "/bee.js", apiUrl: "/_hive" });
-  splitbee.track("Contact Form Submission");
 };
 
 // ? Page transitions
@@ -310,7 +301,6 @@ const addEvents = () => {
   initAnalytics();
   projectPopUpEffect();
   animLinks();
-  initShowreel();
 };
 
 const refreshEvents = () => {

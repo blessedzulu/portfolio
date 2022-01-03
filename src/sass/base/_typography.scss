@@ -28,7 +28,7 @@ body {
   font-weight: var(--fw-semibold);
 
   &--display {
-    font-size: 11vw;
+    font-size: 9rem;
   }
 
   &--1 {
@@ -91,31 +91,6 @@ body {
 
     & span {
       margin-right: 0.5rem;
-    }
-  }
-}
-
-.designer,
-.developer {
-  position: absolute;
-}
-
-.designer {
-  bottom: 5vw;
-}
-
-.developer {
-  bottom: -3vw;
-
-  display: flex;
-  align-items: baseline;
-
-  & span {
-    font-size: 8vw;
-    margin-right: 1rem;
-
-    @include respond("tablet") {
-      margin-right: 2rem;
     }
   }
 }

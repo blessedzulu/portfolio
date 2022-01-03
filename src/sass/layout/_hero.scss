@@ -11,45 +11,16 @@
   @include respond("laptop") {
     padding-top: calc(var(--p-6) + 6rem);
   }
-
-  &__intro {
-    margin-bottom: var(--m-3);
-
-    @include respond("laptop") {
-      margin-bottom: 0;
-    }
-  }
 }
 
 .hero--home {
   display: flex;
-  flex-flow: column;
+  align-items: center;
+  justify-content: center;
   min-height: 100vh;
 
-  @supports (min-height: 100svh) {
-    min-height: 100svh;
-  }
-
-  & .container {
-    margin-bottom: auto;
-
-    & .row {
-      @include respond("tablet") {
-        gap: 4rem;
-        margin-right: 0;
-
-        & > * {
-          &:not(:last-child) {
-            margin-right: 4rem;
-          }
-        }
-      }
-    }
-  }
-
-  & .container--fluid {
-    position: relative;
-  }
+  margin: 0; // Reset margin bottom
+  padding: 0; // Reset padding top
 }
 
 .hero.hero--small {
