@@ -1,0 +1,6 @@
+[[plugins]]
+package = "@netlify/plugin-sitemap"
+
+  [plugins.inputs]
+  changeFreq = "monthly"
+  priority = 0.5
