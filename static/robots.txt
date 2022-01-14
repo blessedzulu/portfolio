@@ -1,0 +1,4 @@
+# robots.txt for http://blessedzulu.com/
+
+User-agent: *
+Sitemap: https://blessedzulu.com/sitemap.xml
