@@ -31,3 +31,32 @@
     }
   }
 }
+
+.project-images {
+  [class^="col"] {
+    flex-basis: 100%;
+
+    @include respond("laptop") {
+      flex-basis: 47%;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-flow: column;
+
+    &--right {
+      margin-top: var(--m-4);
+
+      @include respond("laptop") {
+        margin-top: var(--m-7);
+      }
+    }
+
+    & > * {
+      &:not(:last-of-type) {
+        margin-bottom: var(--m-4);
+      }
+    }
+  }
+}
