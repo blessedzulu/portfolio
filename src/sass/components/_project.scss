@@ -18,7 +18,7 @@
     }
 
     @include respond("laptop") {
-      min-height: 100vh;
+      // min-height: 100vh;
     }
   }
 
@@ -30,10 +30,10 @@
     transition: transform 0.25s var(--easing);
 
     &--featured {
-      height: 50rem; // DEV
+      // height: 50rem; // DEV
 
       @include respond("laptop") {
-        height: 75vh; // DEV
+        // height: 75vh; // DEV
       }
 
       &:hover {
