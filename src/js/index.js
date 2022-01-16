@@ -1,10 +1,10 @@
 import Scrollbar from "smooth-scrollbar";
 import OverscrollPlugin from "smooth-scrollbar/plugins/overscroll";
-import lazysizes from "lazysizes";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import barba from "@barba/core";
 import splitbee from "@splitbee/web";
+import lazySizes from "lazysizes";
 
 // ? Register plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -261,9 +261,6 @@ const projectPopUpEffect = () => {
   });
 };
 
-// ? Initialise video player
-let plyr;
-
 // ? Initialise analytics
 const initAnalytics = () => {
   splitbee.init({ scriptUrl: "/bee.js", apiUrl: "/_hive" });
@@ -288,14 +285,14 @@ const transitionOut = ({ container }) => {
 };
 
 const killEvents = () => {
-  // Kill scrollbar, scrolltriggers and analytics
+  // Kill events & effects
   ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
   scrollBar?.destroy(scrollBar);
   plyr?.destroy();
 };
 
 const addEvents = () => {
-  // Reinitialise scrollbar, scrolltriggers and analytics
+  // Reinitialise events & effects
   initSmoothScroll();
   imgParallaxEffect();
   imgFluidScaleEffect();
