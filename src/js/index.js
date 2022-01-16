@@ -1,5 +1,6 @@
 import Scrollbar from "smooth-scrollbar";
 import OverscrollPlugin from "smooth-scrollbar/plugins/overscroll";
+import lazysizes from "lazysizes";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import barba from "@barba/core";
