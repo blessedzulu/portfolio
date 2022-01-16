@@ -210,39 +210,13 @@ const createParallaxEffect = (el, container, yPercent) => {
 };
 
 const imgParallaxEffect = () => {
-  const imgContainersParallax = document.querySelectorAll(
-    ".project__image-container"
-  );
+  const imgContainers = document.querySelectorAll(".project__image-container");
 
-  [...imgContainersParallax].forEach((container) => {
+  [...imgContainers].forEach((container) => {
     const img = container.querySelector(".project__image");
-    createParallaxEffect(img, container, 20);
+    createParallaxEffect(img, container, 15);
   });
 };
-
-// ? Fluid image scale on scroll effect
-const imgFluidScaleEffect = () => {
-  const projectImgContainersFluid = document.querySelectorAll(
-    ".project__image-container--fluid"
-  );
-
-  [...projectImgContainersFluid].forEach((container) => {
-    const imgFluid = container.querySelector(".project__image--fluid");
-
-    gsap.to(imgFluid, {
-      scale: 1.25,
-      scrollTrigger: {
-        trigger: container,
-        start: "top bottom",
-        end: "top top",
-        scrub: 1,
-      },
-    });
-  });
-};
-
-// ? Image hover move effect
-const imgHoverEffect = () => {};
 
 // ? Project grow on scroll effect
 const projectPopUpEffect = () => {
@@ -295,7 +269,6 @@ const addEvents = () => {
   // Reinitialise events & effects
   initSmoothScroll();
   imgParallaxEffect();
-  imgFluidScaleEffect();
   initAnalytics();
   projectPopUpEffect();
   animLinks();
@@ -347,7 +320,6 @@ function init() {
   initAnalytics();
   animMenu();
   themeToggle();
-  imgHoverEffect();
 }
 
 document.addEventListener("DOMContentLoaded", init);

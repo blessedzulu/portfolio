@@ -155,3 +155,21 @@
   @extend .u-hidden;
   display: none;
 }
+
+.u-aspect-3-4 {
+  padding-bottom: calc(4 / 3 * 100%);
+
+  @supports (aspect-ratio: 3/4) {
+    aspect-ratio: 3/4;
+    padding-bottom: 0;
+  }
+}
+
+.u-aspect-4-3 {
+  padding-bottom: calc(3 / 4 * 100%);
+
+  @supports (aspect-ratio: 4/3) {
+    aspect-ratio: 4/3;
+    padding-bottom: 0;
+  }
+}
