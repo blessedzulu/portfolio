@@ -28,10 +28,13 @@
     will-change: auto;
     overflow: hidden;
     transition: transform 0.25s var(--easing);
+    background: var(--color-black, #000);
 
     &--featured {
+      background: none;
+
       &:hover {
-        transform: scale(0.985);
+        transform: scale(0.975);
       }
     }
 
