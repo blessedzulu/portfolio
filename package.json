@@ -1,7 +1,7 @@
 {
   "name": "portfolio",
-  "version": "0.0.1",
-  "description": "My personal (and portfolio) website",
+  "version": "1.0.0",
+  "description": "Codebase for v1 of my personal website (blessedzulu.com)",
   "repository": "https://github.com/blessedzulu/portfolio.git",
   "scripts": {
     "start": "parcel serve src/index.html --open",
@@ -10,11 +10,9 @@
   },
   "browserslist": "defaults",
   "keywords": [
+    "website",
     "portfolio",
-    "personal website",
-    "resume",
-    "developer",
-    "designer"
+    "personal website"
   ],
   "author": "Blessed Zulu",
   "license": "ISC",
@@ -26,14 +24,11 @@
     "smooth-scrollbar": "^8.6.3"
   },
   "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^4.1.3",
     "@parcel/transformer-image": "^2.0.0-rc.0",
     "@parcel/transformer-sass": "^2.0.0-rc.0",
     "autoprefixer": "^10.4.0",
-    "parcel": "^2.0.0-rc.0",
+    "parcel": "^2.2.0",
     "parcel-reporter-static-files-copy": "^1.3.4",
-    "postcss": "^8.4.5",
-    "postcss-uncss": "^0.17.0",
-    "uncss": "^0.17.3"
+    "postcss": "^8.4.5"
   }
 }

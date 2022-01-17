@@ -25,10 +25,9 @@
   &__image-container {
     position: relative;
     width: 100%;
-    will-change: auto;
     overflow: hidden;
     transition: transform 0.25s var(--easing);
-    background: var(--color-black, #000);
+    background: rgba(var(--rgb-black), 0.0375);
 
     &--featured {
       background: none;
