@@ -1,19 +1,33 @@
-.btn,
-.btn:link,
-.btn:visited {
-  display: inline-block;
-  position: relative;
-  border: none;
-  border-radius: 10rem;
-  cursor: pointer;
-  text-decoration: none;
-  background: var(--color-black);
-  font-family: inherit;
-  font-size: var(--fz-2);
-  color: var(--color-white);
-  font-weight: var(--fw-semibold);
-  padding: 1.5rem 4rem;
-  transition: all 0.25s var(--easing);
+.btn {
+  &,
+  &:link,
+  &:visited {
+    display: inline-block;
+    position: relative;
+    border: none;
+    border-radius: 10rem;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: var(--fz-2);
+    font-weight: var(--fw-semibold);
+    padding: 1.5rem 4rem;
+    transition: all 0.25s var(--easing);
+  }
+
+  &--primary,
+  &--primary:link,
+  &--primary:visited {
+    background: var(--color-black);
+    color: var(--color-white);
+  }
+
+  &--secondary,
+  &--secondary:link,
+  &--secondary:visited {
+    border: 2px solid var(--color-black);
+    color: inherit;
+  }
 
   &:focus,
   &:active {
