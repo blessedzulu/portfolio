@@ -4,3 +4,11 @@ package = "@netlify/plugin-sitemap"
   [plugins.inputs]
   changeFreq = "monthly"
   priority = 0.5
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Content-Security-Policy = "default-src 'self'; style-src 'self' cloudfront.net *.cloudfront.net; form-action 'self'; script-src 'self' cloudfront.net *.cloudfront.net; img-src 'self' cloudfront.net *.cloudfront.net"
