@@ -11,7 +11,6 @@ gsap.registerPlugin(ScrollTrigger);
 Scrollbar.use(OverscrollPlugin);
 
 // ? DOM Nodes
-const htmlEl = document.querySelector("html");
 const body = document.body;
 const overlayBody = document.querySelector(".overlay--body");
 const loader = document.querySelector(".loader");
