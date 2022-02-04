@@ -159,13 +159,11 @@ const themeToggle = () => {
 
     darkMode = JSON.parse(localStorage.getItem("darkMode"));
     darkMode === null ? lightsOut() : lightsOn();
-    // darkMode === null ? toggleTheme("dark") : toggleTheme("dark");
   });
 };
 
 const setTheme = () => {
   darkMode === null ? lightsOn() : lightsOut();
-  // darkMode === null ? toggleTheme("dark") : toggleTheme("light");
 };
 
 // ? Link hover animations
