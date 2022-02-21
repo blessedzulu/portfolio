@@ -28,7 +28,11 @@ body {
   font-weight: var(--fw-semibold);
 
   &--display {
-    font-size: 9rem;
+    font-size: 6rem;
+
+    @include respond("laptop") {
+      font-size: 9rem;
+    }
   }
 
   &--1 {
