@@ -21,7 +21,7 @@
     "@splitbee/web": "^0.3.0",
     "gsap": "^3.10.0",
     "lazysizes": "^5.3.2",
-    "smooth-scrollbar": "^8.7.4"
+    "smooth-scrollbar": "^8.8.2"
   },
   "devDependencies": {
     "@parcel/transformer-image": "^2.0.0-rc.0",
