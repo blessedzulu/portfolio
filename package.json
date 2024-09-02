@@ -17,7 +17,7 @@
   "author": "Blessed Zulu",
   "license": "ISC",
   "dependencies": {
-    "@barba/core": "^2.9.7",
+    "@barba/core": "^2.10.3",
     "@splitbee/web": "^0.3.0",
     "gsap": "^3.11.4",
     "lazysizes": "^5.3.2",
