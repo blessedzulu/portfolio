@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <script>
+    (function() {
+      try {
+        var stored = localStorage.getItem('theme');
+        var dark = stored ?
+          stored === 'dark' :
+          window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var root = document.documentElement;
+        root.classList.toggle('dark', dark);
+        root.style.colorScheme = dark ? 'dark' : 'light';
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="canonical" href="/">
+  <meta name="description" content="Blessed Zulu is a software engineer in Zambia. He builds ambitious websites, apps and systems and ships them to real people.">
+  <title>Blessed Zulu · Blessed Zulu</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&display=swap"
+    rel="stylesheet">
+    <link rel="stylesheet" href="/assets/build/assets/main-QpHU2FU0.css">
+  <script defer type="module" src="/assets/build/assets/main-Ci3xSkpN.js"></script>
+</head>
+
+<body class="min-h-screen flex flex-col">
+
+  <header class="sticky top-0 z-30">
+    <div class="mx-auto max-w-4xl px-6 sm:px-8 flex items-center justify-between h-20">
+      <a href="/" class="font-serif text-xl tracking-tight shrink-0">Blessed Zulu</a>
+
+      
+      <div class="flex items-center gap-2">
+        <nav class="flex items-center gap-0.5 rounded-full border border-line bg-paper-2/70 p-1 backdrop-blur-md"
+          aria-label="Primary">
+          <a href="/work"
+            class="rounded-full px-4 py-1.5 text-sm text-muted hover:text-ink transition-colors">Work</a>
+          <a href="/writing"
+            class="rounded-full px-4 py-1.5 text-sm text-muted hover:text-ink transition-colors">Writing</a>
+          <a href="/about"
+            class="rounded-full px-4 py-1.5 text-sm text-muted hover:text-ink transition-colors">About</a>
+          <a href="/contact"
+            class="rounded-full px-4 py-1.5 text-sm text-muted hover:text-ink transition-colors">Contact</a>
+        </nav>
+        <button id="theme-toggle" type="button" aria-label="Toggle dark mode"
+          class="inline-flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-line bg-paper-2/70 text-muted hover:text-ink transition-colors backdrop-blur-md">
+          
+          <svg class="hidden h-4 w-4 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path
+              d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4">
+            </path>
+          </svg>
+          
+          <svg class="block h-4 w-4 dark:hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  
+  <div class="flex-1">
+      
+  <canvas id="fluid-canvas" aria-hidden="true"></canvas>
+  <div class="render" aria-hidden="true"></div>
+  <div class="fluid-mask" aria-hidden="true"></div>
+
+  
+  <section id="hero" class="relative z-10 flex items-start" style="min-height: calc(100svh - 5rem);">
+    <div class="mx-auto max-w-4xl px-6 sm:px-8 w-full pt-14 sm:pt-20">
+      <p class="font-serif text-[2rem] leading-[1.12] sm:text-5xl sm:leading-[1.08] max-w-xl reveal text-ink">
+        <span class="text-muted">Software Engineer from Zambia.</span>
+        <br> Building <em>useful</em> apps and systems for <em>real</em> people and businesses.
+      </p>
+      <p class="mt-6 text-muted max-w-md reveal tabular-nums">
+        Ndola, Zambia &middot; <span id="local-time">--:--:--</span>
+      </p>
+    </div>
+  </section>
+
+  
+  <main class="relative z-10 bg-paper">
+    <div class="mx-auto max-w-4xl px-6 sm:px-8">
+
+      
+      <section id="work" class="pt-20 sm:pt-28 reveal">
+        <div class="flex items-baseline justify-between mb-8">
+          <p class="text-sm text-faint">Selected Work</p>
+          <a href="/work" class="text-sm text-faint hover:text-ink transition-colors u">All work</a>
+        </div>
+
+        <div>
+          <a href="https://zamcalc.com" target="_blank" rel="noopener"
+            class="group flex items-baseline gap-x-4 border-t border-line py-5">
+            <span class="flex min-w-0 flex-1 flex-wrap items-baseline gap-x-3 gap-y-1">
+              <span class="font-medium text-ink">Zamcalc</span>
+              <span class="text-muted">Financial tools for Zambia. Web, Android, iOS.</span>
+            </span>
+            <span class="shrink-0 text-faint group-hover:text-ink transition-colors whitespace-nowrap">Visit &nearr;</span>
+          </a>
+          <div class="flex items-baseline gap-x-4 border-t border-line py-5">
+            <span class="flex min-w-0 flex-1 flex-wrap items-baseline gap-x-3 gap-y-1">
+              <span class="font-medium text-ink">CBU Atlas</span>
+              <span class="text-muted">Student information system for The Copperbelt University.</span>
+            </span>
+            <span class="shrink-0 text-faint whitespace-nowrap">In progress</span>
+          </div>
+          <a href="https://sms.zut.ac.zm" target="_blank" rel="noopener"
+            class="group flex items-baseline gap-x-4 border-t border-line py-5">
+            <span class="flex min-w-0 flex-1 flex-wrap items-baseline gap-x-3 gap-y-1">
+              <span class="font-medium text-ink">Student Management System</span>
+              <span class="text-muted">For Zambia University College of Technology.</span>
+            </span>
+            <span class="shrink-0 text-faint group-hover:text-ink transition-colors whitespace-nowrap">Visit &nearr;</span>
+          </a>
+          <a href="https://fleet.macroworldservices.com" target="_blank" rel="noopener"
+            class="group flex items-baseline gap-x-4 border-t border-line py-5">
+            <span class="flex min-w-0 flex-1 flex-wrap items-baseline gap-x-3 gap-y-1">
+              <span class="font-medium text-ink">Fleet Monitoring</span>
+              <span class="text-muted">Fleet tracking and reporting for Macroworld Services.</span>
+            </span>
+            <span class="shrink-0 text-faint group-hover:text-ink transition-colors whitespace-nowrap">Visit &nearr;</span>
+          </a>
+          <a href="https://github.com/blessedzulu" target="_blank" rel="noopener"
+            class="group flex items-baseline gap-x-4 border-t border-b border-line py-5">
+            <span class="flex min-w-0 flex-1 flex-wrap items-baseline gap-x-3 gap-y-1">
+              <span class="font-medium text-ink">NativePHP packages</span>
+              <span class="text-muted">Open-source packages for NativePHP Mobile.</span>
+            </span>
+            <span class="shrink-0 text-faint group-hover:text-ink transition-colors whitespace-nowrap">Visit &nearr;</span>
+          </a>
+        </div>
+      </section>
+
+      
+      <section id="writing" class="pt-20 sm:pt-28 reveal">
+        <div class="flex items-baseline justify-between mb-8">
+          <p class="text-sm text-faint">Writing</p>
+          <a href="/writing" class="text-sm text-faint hover:text-ink transition-colors u">All writing</a>
+        </div>
+        <div>
+                      <a href="/writing/a-fluid-that-spells-bz"
+              class="group flex flex-wrap items-baseline gap-x-3 gap-y-1 py-5 border-t border-line last:border-b">
+              <span
+                class="font-medium group-hover:underline underline-offset-4 decoration-line">A fluid that spells BZ</span>
+              <span class="ml-auto text-faint whitespace-nowrap">15 Jul 2026</span>
+            </a>
+                  </div>
+      </section>
+
+      
+
+    </div>
+  </main>
+
+  <script src="/js/fluid.js" defer></script>
+  </div>
+
+  
+  <footer id="contact" class="relative z-10 bg-paper pt-24 px-3 pb-3 sm:px-4 sm:pb-4">
+    <div class="rounded-3xl bg-paper-2 px-6 py-12 sm:px-10 sm:py-14">
+      <div class="mx-auto max-w-4xl">
+        <div class="flex flex-wrap items-start justify-between gap-8">
+          <div>
+            <p class="flex items-center gap-2.5 text-sm text-muted">
+              
+              Get in touch
+            </p>
+            <a href="mailto:hello@blessedzulu.com"
+              class="mt-4 inline-block font-serif text-3xl u sm:text-4xl">hello@blessedzulu.com</a>
+            <p class="mt-4 max-w-md text-muted">Available for work and collaborations.</p>
+          </div>
+          <a id="back-to-top" href="#" class="text-sm text-muted transition-colors hover:text-ink">Back to top
+            &uarr;</a>
+        </div>
+
+        <div
+          class="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6 text-sm text-faint">
+          <span>&copy; <span id="year">2026</span> Blessed Zulu</span>
+          <nav class="flex gap-5 text-muted">
+            <a href="https://github.com/blessedzulu" target="_blank" rel="noopener"
+              class="transition-colors hover:text-ink">GitHub</a>
+            <a href="https://www.linkedin.com/in/blessedzulu" target="_blank" rel="noopener"
+              class="transition-colors hover:text-ink">LinkedIn</a>
+            <a href="https://x.com/blessedzulu_" target="_blank" rel="noopener"
+              class="transition-colors hover:text-ink">X</a>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>

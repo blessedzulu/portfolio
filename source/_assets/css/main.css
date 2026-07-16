@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@source "../../**/*.blade.php";
+@source "../../**/*.md";
+
+/* ---- design tokens ---- */
+@theme {
+  /* Neutral black/white scheme (Tailwind neutral ramp). Light mode. */
+  --color-paper:   #ffffff;  /* background       */
+  --color-paper-2: #f5f5f5;  /* raised surface   */
+  --color-ink:     #0a0a0a;  /* foreground       */
+  --color-soft:    #404040;  /* body copy        */
+  --color-muted:   #737373;  /* secondary text   */
+  --color-faint:   #a3a3a3;  /* labels / hints   */
+  --color-line:    #e5e5e5;  /* hairline borders */
+
+  --font-sans:  "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-mono:  "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Class-based dark mode (a la next-themes): an inline <head> script and the
+   theme toggle both flip `.dark` on <html>. Kept unlayered so these overrides
+   beat @theme's :root defaults. Everything downstream reads --color-* tokens,
+   so the fluid, masks and menu all recolour for free. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root { color-scheme: light; }
+
+.dark {
+  color-scheme: dark;
+  --color-paper:   #0a0a0a;  /* background       */
+  --color-paper-2: #171717;  /* raised surface   */
+  --color-ink:     #fafafa;  /* foreground       */
+  --color-soft:    #e5e5e5;  /* body copy        */
+  --color-muted:   #a3a3a3;  /* secondary text   */
+  --color-faint:   #6e6e6e;  /* labels / hints   */
+  --color-line:    #262626;  /* hairline borders */
+}
+
+/* ---- base ---- */
+@layer base {
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection { background: var(--color-ink); color: var(--color-paper); }
+
+  a { color: inherit; text-decoration: none; }
+}
+
+/* ---- the BZ fluid (adapted from javierbyte/fluid-triangle, MIT) ---- */
+:root { --cell-size: 8px; }
+
+#fluid-canvas { position: fixed; inset: 0; display: none; }
+
+.render {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  white-space: pre;
+  letter-spacing: 0.4em;
+  font-family: var(--font-mono);
+  font-size: var(--cell-size);
+  line-height: var(--cell-size);
+  font-weight: 700;
+  color: color-mix(in srgb, var(--color-ink) 58%, transparent);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* fade the fluid at the edges so it reads as a quiet backdrop, not a poster */
+.fluid-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, var(--color-paper) 0%, transparent 16%, transparent 60%, var(--color-paper) 100%),
+    linear-gradient(to right, var(--color-paper), transparent 12%, transparent 88%, var(--color-paper));
+}
+
+/* ---- reveal ---- */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; transition: none; } }
+
+/* ---- link underline ---- */
+.u {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size .35s cubic-bezier(.22,1,.36,1);
+  padding-bottom: 1px;
+}
+.u:hover { background-size: 100% 1px; }
+
+/* ---- prose (markdown posts) ---- */
+.prose { color: var(--color-soft); font-size: 1.12rem; line-height: 1.75; }
+.prose > * + * { margin-top: 1.4rem; }
+.prose h2 { font-family: var(--font-serif); font-size: 1.9rem; color: var(--color-ink); margin-top: 2.6rem; line-height: 1.15; }
+.prose h3 { font-weight: 500; font-size: 1.3rem; color: var(--color-ink); margin-top: 2rem; }
+.prose a { color: var(--color-ink); border-bottom: 1px solid var(--color-faint); }
+.prose a:hover { border-color: var(--color-ink); }
+.prose strong { color: var(--color-ink); font-weight: 500; }
+.prose blockquote { border-left: 2px solid var(--color-ink); padding-left: 1.2rem; margin: 0; font-family: var(--font-serif); font-style: italic; font-size: 1.35rem; color: var(--color-ink); }
+.prose ul { padding-left: 1.2rem; list-style: disc; }
+.prose li { margin-top: .5rem; }
+.prose code { font-family: var(--font-mono); font-size: .88em; background: var(--color-paper-2); padding: .1rem .35rem; border-radius: 5px; }
+.prose pre { background: #17150f; color: #ece9e0; padding: 1.1rem 1.3rem; border-radius: 10px; overflow-x: auto; font-size: .86rem; line-height: 1.7; }
+.prose pre code { background: none; padding: 0; color: inherit; }

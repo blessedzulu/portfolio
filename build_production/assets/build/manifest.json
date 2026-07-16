@@ -1,0 +1,13 @@
+{
+  "source/_assets/css/main.css": {
+    "file": "assets/main-QpHU2FU0.css",
+    "src": "source/_assets/css/main.css",
+    "isEntry": true
+  },
+  "source/_assets/js/main.js": {
+    "file": "assets/main-Ci3xSkpN.js",
+    "name": "main",
+    "src": "source/_assets/js/main.js",
+    "isEntry": true
+  }
+}
