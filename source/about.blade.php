@@ -20,6 +20,20 @@ description: Blessed Zulu is a software engineer in Ndola, Zambia, building prod
           'note' => 'A lot of my work concerns finances and sensitive records. It has to be accurate and trustworthy.',
       ],
   ];
+
+  // Capabilities, not tooling - a client cares what gets built, not the stack.
+  $help = [
+      [
+          'title' => 'Product & full-stack engineering',
+          'note' => 'From an idea or vision to complete software that real people use.',
+      ],
+      ['title' => 'Websites & web apps', 'note' => 'Marketing sites, internal tools and platforms a business runs on.'],
+      ['title' => 'Mobile apps', 'note' => 'For iOS and Android, shipped reliably from a cross-platform codebase.'],
+      [
+          'title' => 'Growth strategy',
+          'note' => 'SEO, GEO, analytics and the technical work behind steady product growth.',
+      ],
+  ];
 @endphp
 
 @section('body')
@@ -54,6 +68,20 @@ description: Blessed Zulu is a software engineer in Ndola, Zambia, building prod
               <span class="font-mono text-xs text-faint tabular-nums">{{ sprintf('%02d', $i + 1) }}</span>
               <p class="mt-3 font-serif text-xl text-ink">{{ $p['title'] }}</p>
               <p class="mt-1.5 text-muted">{{ $p['note'] }}</p>
+            </div>
+          @endforeach
+        </div>
+      </section>
+
+      {{-- what I can help with. Deliberately a light two-column list, not cards:
+           a second numbered card grid under "How I work" would read as repetition. --}}
+      <section class="mt-16 sm:mt-24">
+        <h2 class="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-ink">What I can help with</h2>
+        <div class="grid sm:grid-cols-2 sm:gap-x-10">
+          @foreach ($help as $h)
+            <div class="border-t border-line py-5">
+              <p class="font-serif text-xl text-ink">{{ $h['title'] }}</p>
+              <p class="mt-1.5 text-muted">{{ $h['note'] }}</p>
             </div>
           @endforeach
         </div>

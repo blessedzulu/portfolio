@@ -123,7 +123,7 @@ return [
   'projectGroups' => [
     'Projects' => 'Products I own',
     'Client Work' => 'Systems built for businesses',
-    'Open Source' => 'Packages I maintain',
+    'Open Source' => 'Projects I maintain',
   ],
 
   /*

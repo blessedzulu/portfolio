@@ -4,16 +4,6 @@ description: Get in touch with Blessed Zulu - open to freelance work, collaborat
 ---
 @extends('_layouts.main')
 
-@php
-    // Capabilities, not tooling - a client cares what gets built, not the stack.
-    $help = [
-        ['title' => 'Product & full-stack engineering', 'note' => 'From a first sketch to something real people use.'],
-        ['title' => 'Websites & web apps',              'note' => 'Marketing sites, internal tools and platforms a business runs on.'],
-        ['title' => 'Mobile apps',                      'note' => 'iOS and Android, shipped from a single codebase.'],
-        ['title' => 'Growth strategy',                  'note' => 'SEO, analytics and the technical work behind steady organic growth.'],
-    ];
-@endphp
-
 @section('body')
 <main class="relative z-10 bg-paper">
     <div class="mx-auto max-w-4xl px-6 sm:px-8 pt-14 sm:pt-20">
@@ -69,19 +59,6 @@ description: Get in touch with Blessed Zulu - open to freelance work, collaborat
             </div>
         </section>
 
-        {{-- what I can help with --}}
-        <section class="mt-16 sm:mt-24">
-            <h2 class="mb-8 font-mono text-xs uppercase tracking-[0.2em] text-ink">What I can help with</h2>
-            <div class="grid gap-4 sm:grid-cols-2">
-                @foreach ($help as $i => $h)
-                    <div class="rounded-2xl bg-paper-2 p-6 sm:p-7">
-                        <span class="font-mono text-xs text-faint tabular-nums">{{ sprintf('%02d', $i + 1) }}</span>
-                        <p class="mt-3 font-serif text-xl text-ink">{{ $h['title'] }}</p>
-                        <p class="mt-1.5 text-muted">{{ $h['note'] }}</p>
-                    </div>
-                @endforeach
-            </div>
-        </section>
     </div>
 </main>
 @endsection
