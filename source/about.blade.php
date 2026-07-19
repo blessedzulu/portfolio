@@ -73,19 +73,35 @@ description: Blessed Zulu is a software engineer in Ndola, Zambia, building prod
         </div>
       </section>
 
-      {{-- what I can help with. Deliberately a light two-column list, not cards:
-           a second numbered card grid under "How I work" would read as repetition. --}}
+      {{-- what I can help with --}}
       <section class="mt-16 sm:mt-24">
-        <h2 class="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-ink">What I can help with</h2>
-        <div class="grid sm:grid-cols-2 sm:gap-x-10">
-          @foreach ($help as $h)
-            <div class="border-t border-line py-5">
-              <p class="font-serif text-xl text-ink">{{ $h['title'] }}</p>
+        <h2 class="mb-8 font-mono text-xs uppercase tracking-[0.2em] text-ink">What I can help with</h2>
+        <div class="grid gap-4 sm:grid-cols-2">
+          @foreach ($help as $i => $h)
+            <div class="rounded-2xl bg-paper-2 p-6 sm:p-7">
+              <span class="font-mono text-xs text-faint tabular-nums">{{ sprintf('%02d', $i + 1) }}</span>
+              <p class="mt-3 font-serif text-xl text-ink">{{ $h['title'] }}</p>
               <p class="mt-1.5 text-muted">{{ $h['note'] }}</p>
             </div>
           @endforeach
         </div>
       </section>
+
+      {{-- Alternative treatment, kept for reference: a light two-column list
+           instead of cards. Swap it in by replacing the section above.
+
+      <section class="mt-16 sm:mt-24">
+        <h2 class="mb-2 font-mono text-xs uppercase tracking-[0.2em] text-ink">What I can help with</h2>
+        <div class="grid sm:grid-cols-2 sm:gap-x-10">
+          @@foreach ($help as $h)
+            <div class="border-t border-line py-5">
+              <p class="font-serif text-xl text-ink">@{{ $h['title'] }}</p>
+              <p class="mt-1.5 text-muted">@{{ $h['note'] }}</p>
+            </div>
+          @@endforeach
+        </div>
+      </section>
+      --}}
 
       {{-- stack --}}
       <section class="mt-16 sm:mt-24">
