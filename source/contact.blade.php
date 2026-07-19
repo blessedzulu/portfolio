@@ -5,11 +5,12 @@ description: Get in touch with Blessed Zulu - open to freelance work, collaborat
 @extends('_layouts.main')
 
 @php
+    // Capabilities, not tooling - a client cares what gets built, not the stack.
     $help = [
-        ['title' => 'Product & full-stack engineering',   'note' => 'From a first sketch to something real people use.'],
-        ['title' => 'Laravel & Livewire web apps',        'note' => 'The stack most of my work is built on.'],
-        ['title' => 'Mobile apps with NativePHP',         'note' => 'One Laravel codebase, shipped to iOS and Android.'],
-        ['title' => 'Data-heavy & correctness-critical tools', 'note' => 'Calculators, dashboards and systems that have to be right.'],
+        ['title' => 'Product & full-stack engineering', 'note' => 'From a first sketch to something real people use.'],
+        ['title' => 'Websites & web apps',              'note' => 'Marketing sites, internal tools and platforms a business runs on.'],
+        ['title' => 'Mobile apps',                      'note' => 'iOS and Android, shipped from a single codebase.'],
+        ['title' => 'Growth strategy',                  'note' => 'SEO, analytics and the technical work behind steady organic growth.'],
     ];
 @endphp
 
