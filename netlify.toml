@@ -1,0 +1,23 @@
+# Netlify build configuration.
+#
+# Kept in the repo so deploys are reproducible and reviewable (settings here
+# take precedence over the values in the Netlify UI).
+#
+# Two things this site needs that Netlify does not do by default:
+#   1. It is a PHP (Jigsaw) site, so Composer must run. Netlify installs npm
+#      packages automatically, but not Composer ones, and `vendor/` is
+#      gitignored - without this the Jigsaw binary is missing and the build
+#      fails.
+#   2. Netlify's build image tops out at PHP 8.3, so composer.json pins
+#      `config.platform.php` to 8.3 to keep the lock file installable here.
+#
+# `npm run build` runs Vite, which chains the production Jigsaw build and
+# writes the static site to build_production/.
+
+[build]
+  command = "composer install --no-dev --optimize-autoloader && npm run build"
+  publish = "build_production"
+
+[build.environment]
+  PHP_VERSION = "8.3"
+  NODE_VERSION = "22"

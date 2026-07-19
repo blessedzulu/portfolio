@@ -35,6 +35,13 @@ cd build_production && python3 -m http.server 8000
 Deploy the contents of `build_production/` to any static host (Cloudflare Pages,
 Netlify, a plain box, etc.).
 
+Netlify is configured in [`netlify.toml`](netlify.toml). Two gotchas worth knowing
+if you deploy this elsewhere: it is a **PHP** site, so your host must run
+`composer install` (npm alone is not enough - `vendor/` is gitignored and the
+Jigsaw binary lives there), and `composer.json` pins `config.platform.php` to
+**8.3** because that is the newest PHP on Netlify's build image. Raise that pin if
+your host offers a newer PHP.
+
 ## Make it yours
 
 Almost everything lives in **[`config.php`](config.php)**, split into commented blocks:
