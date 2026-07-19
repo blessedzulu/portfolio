@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700&family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    position: relative;
+    background: #0a0a0a;
+    color: #fafafa;
+    font-family: "Instrument Sans", system-ui, sans-serif;
+  }
+  /* ASCII "BZ" monogram - the site's signature (its ASCII fluid spells BZ).
+     Thick blocky figlet; opacity stays low because blocks cover far more area
+     than linework. */
+  .ascii {
+    position: absolute;
+    top: 50%; right: -24px;
+    transform: translateY(-50%);
+    font-family: "Geist Mono", monospace;
+    font-size: 60px; line-height: 1.04;
+    font-weight: 700;
+    white-space: pre;
+    color: #fafafa; opacity: 0.14;
+    user-select: none;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 42%);
+            mask-image: linear-gradient(to right, transparent, #000 42%);
+  }
+  .frame {
+    position: absolute; inset: 28px;
+    border: 1px solid rgba(250,250,250,0.10);
+    border-radius: 22px;
+  }
+  .content {
+    position: absolute; inset: 28px;
+    padding: 72px 80px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .eyebrow {
+    font-family: "Geist Mono", monospace;
+    font-size: 20px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.28em;
+    color: #8f8f8f;
+  }
+  .name {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-size: 150px; line-height: 1; letter-spacing: -0.01em;
+  }
+  .tagline {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-size: 40px; line-height: 1.2; color: #c7c7c7;
+    max-width: 720px; margin-top: 26px;
+  }
+  .tagline em { font-style: italic; color: #fafafa; }
+  /* mono is all-caps only - footer labels uppercased to honour that rule */
+  .foot {
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: "Geist Mono", monospace; font-size: 20px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.14em;
+    color: #8f8f8f;
+  }
+  .foot .status { display: inline-flex; align-items: center; gap: 12px; }
+  .foot .dot { width: 7px; height: 7px; border-radius: 50%; background: #6e6e6e; }
+</style>
+</head>
+<body>
+  <div class="ascii"> ██████╗ ███████╗
+██╔══██╗╚══███╔╝
+██████╔╝  ███╔╝
+██╔══██╗ ███╔╝
+██████╔╝███████╗
+╚═════╝ ╚══════╝</div>
+  <div class="frame"></div>
+  <div class="content">
+    <div class="eyebrow">Software Engineer &middot; Zambia</div>
+    <div>
+      <div class="name">Blessed Zulu</div>
+      <div class="tagline">Building <em>useful</em> apps and systems for<br><em>real</em> people and businesses.</div>
+    </div>
+    <div class="foot">
+      <span>blessedzulu.com</span>
+      <span class="status"><span class="dot"></span>Available for work</span>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,5 +1,8 @@
 /.env
 /build_local/
+/build_production/
+/build_staging/
+/source/assets/build/
 /cache/
 /node_modules/
 /vendor/
@@ -8,7 +11,3 @@
 npm-debug.log
 hot
 
-# Optional ignores
-# /build_staging/
-# /build_production/
-# /source/assets/build/

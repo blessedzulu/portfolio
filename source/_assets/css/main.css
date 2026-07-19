@@ -14,6 +14,11 @@
   --color-faint:   #a3a3a3;  /* labels / hints   */
   --color-line:    #e5e5e5;  /* hairline borders */
 
+  /* Three typefaces, each with ONE job - keeping usage strict is what makes
+     three read as intentional rather than busy:
+       serif → display only (page titles, hero, big statements)
+       sans  → all body & UI text
+       mono  → all-caps only (eyebrows, section labels, chips, index numbers) */
   --font-sans:  "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
   --font-mono:  "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -55,6 +60,69 @@
   a { color: inherit; text-decoration: none; }
 }
 
+/* ---- hover pill fill (shared by the nav pill + the copy button) ---- */
+/* Lazily substituted, so it re-resolves against the dark-mode --color-ink. */
+:root { --pill-fill: color-mix(in srgb, var(--color-ink) 8%, transparent); }
+
+/* always-on legibility chips (option-2 prototype: pills by default, a faint
+   tint + backdrop-blur so header text stays readable over content). */
+/* No background - just a rounded clip so the backdrop-blur reads as a pill.
+   The blur comes from Tailwind's backdrop-blur utility in the markup (a custom
+   backdrop-filter here gets dropped by the CSS minifier). */
+.chip { border-radius: 9999px; }
+
+/* wordmark: full name at the top, short form (BZ) once scrolled. The chip width
+   collapses smoothly while the two forms cross-fade with a soft vertical roll.
+   main.js sets the width (from measured widths) and toggles <html>.scrolled. */
+[data-wm] { display: inline-block; white-space: nowrap; }
+[data-wm] > span { display: inline-block; vertical-align: bottom; }
+/* the non-initial runs collapse to zero width, so B and Z slide together */
+[data-wm-collapse] {
+  overflow: hidden;
+  white-space: pre;
+  max-width: var(--wm-w, 10em);
+  opacity: 1;
+  transition: max-width .42s cubic-bezier(.4, 0, .2, 1), opacity .28s ease;
+}
+.scrolled [data-wm-collapse] { max-width: 0; opacity: 0; }
+/* mobile: always the short form, no animation */
+@media (max-width: 639px) {
+  [data-wm-collapse] { max-width: 0; opacity: 0; transition: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-wm-collapse] { transition: none; }
+}
+/* single-element hover fill (wordmark, toggle) */
+.action-hover { transition: background-color .2s ease, color .2s ease; }
+.action-hover:hover { background: var(--pill-fill); color: var(--color-ink); }
+
+/* nav hover pill (direction-aware; positioned in main.js). Snappier easing -
+   the previous long ease-out tail felt like it dragged. */
+[data-nav-indicator] {
+  background: var(--pill-fill);
+  transition: left .2s cubic-bezier(.4, 0, .2, 1), width .2s cubic-bezier(.4, 0, .2, 1), opacity .16s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-nav-indicator] { transition: opacity .2s ease; }
+}
+
+/* copy button gets the same fill on hover */
+[data-copy]:hover { background: var(--pill-fill); }
+
+/* .action = the shared pill hover for standalone actionable elements
+   (links, buttons). Pair with padding (e.g. px-3 py-1.5) + a negative margin
+   to keep the label aligned. Inline prose links keep the .u underline instead. */
+.action {
+  border-radius: 9999px;
+  transition: background-color .2s ease, color .2s ease;
+}
+.action:hover { background: var(--pill-fill); color: var(--color-ink); }
+
+/* group variant: the pill appears when the parent .group row is hovered
+   (for a link that lives inside a larger row-level <a>). */
+.action-g { border-radius: 9999px; transition: background-color .2s ease; }
+.group:hover .action-g { background: var(--pill-fill); }
+
 /* ---- the BZ fluid (adapted from javierbyte/fluid-triangle, MIT) ---- */
 :root { --cell-size: 8px; }
 
@@ -86,11 +154,6 @@
     linear-gradient(to bottom, var(--color-paper) 0%, transparent 16%, transparent 60%, var(--color-paper) 100%),
     linear-gradient(to right, var(--color-paper), transparent 12%, transparent 88%, var(--color-paper));
 }
-
-/* ---- reveal ---- */
-.reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); }
-.reveal.in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; transition: none; } }
 
 /* ---- link underline ---- */
 .u {

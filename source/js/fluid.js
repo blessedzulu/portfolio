@@ -42,15 +42,42 @@ const BASE = [
   [" ", 0],
 ];
 
-// The bright glyph in each cell cycles through the letters of this phrase, so
-// the fluid reads "software engineer" along its diagonals. A space becomes a
-// letterless slot, which reads as the gap between the two words.
-const PHRASE = "software engineer";
-const RENDER_CHARS = [...PHRASE].map((ch) => {
-  if (ch === " ") return [...BASE];
-  const up = ch.toUpperCase();
-  return [[up, 30000], [up, 30000], [ch, 18000], ...BASE];
-});
+// The bright glyph in each cell cycles through the letters of the current
+// phrase, so the fluid spells it along its diagonals. We rotate the phrase
+// through the stack every few seconds, so the fluid morphs between the
+// technologies. Edit TECHS to match what you actually work with.
+function buildRenderChars(phrase) {
+  return [...phrase].map((ch) => {
+    if (ch === " ") return [...BASE];
+    const up = ch.toUpperCase();
+    return [[up, 30000], [up, 30000], [ch, 18000], ...BASE];
+  });
+}
+
+// The stack the fluid spells is injected from config.php as window.FLUID_TECHS
+// (single source of truth). The list below is only a fallback for standalone use.
+const TECHS = (Array.isArray(window.FLUID_TECHS) && window.FLUID_TECHS.length)
+  ? window.FLUID_TECHS
+  : [
+      "laravel",
+      "livewire",
+      "filament",
+      "php",
+      "tailwind",
+      "javascript",
+      "git",
+      "sql",
+      "python",
+    ];
+
+let techIndex = 0;
+let RENDER_CHARS = buildRenderChars(TECHS[0]);
+
+// morph to the next technology every few seconds
+setInterval(() => {
+  techIndex = (techIndex + 1) % TECHS.length;
+  RENDER_CHARS = buildRenderChars(TECHS[techIndex]);
+}, 4000);
 
 // // amount of bright pixels a character shows at 12px font size
 // const RENDER_CHAR_B = [
@@ -1259,7 +1286,7 @@ setupScene();
 // BZ sits just right and below centre on load; clicking stamps a random coding
 // character in its place, and moving the pointer ripples the fluid around it.
 scene.placed.mask = glyphMask("BZ");
-scene.placed.x = simWidth * 0.62; // slightly right of centre
+scene.placed.x = simWidth * 0.56; // a touch right of centre
 scene.placed.y = simHeight * 0.42; // slightly below centre
 scene.placed.active = true;
 update();

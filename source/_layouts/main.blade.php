@@ -20,11 +20,11 @@
     })();
   </script>
 
-  <link rel="canonical" href="{{ $page->getUrl() }}">
-  <meta name="description" content="{{ $page->description ?? 'Blessed Zulu is a software engineer in Zambia.' }}">
-  <title>{{ $page->title ? $page->title . ' · Blessed Zulu' : 'Blessed Zulu' }}</title>
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  {{-- meta, Open Graph, Twitter, JSON-LD - all config-driven --}}
+  @include('_partials.head-seo')
+
   <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -37,25 +37,35 @@
 
 <body class="min-h-screen flex flex-col">
 
-  <header class="sticky top-0 z-30">
+  {{-- Sticky header. Everything floats bare - no bar, no pill, no backdrop.
+       Just the wordmark, the links and the toggle over the page. --}}
+  <header id="site-header" class="sticky top-0 z-30">
     <div class="mx-auto max-w-4xl px-6 sm:px-8 flex items-center justify-between h-20">
-      <a href="/" class="font-serif text-xl tracking-tight shrink-0">Blessed Zulu</a>
+      <a href="/"
+        class="chip action-hover inline-flex h-9 items-center px-4 font-serif text-xl tracking-tight shrink-0 backdrop-blur"
+        aria-label="{{ $page->site['name'] }} - home">
+        {{-- Split into kept initials + collapsible runs so "Blessed Zulu" folds
+             in place to "BZ" on scroll. Kept on one line: any whitespace between
+             these spans would render as a gap that cannot collapse. --}}
+        @php $wmWords = preg_split('/\s+/', trim($page->site['name'])); @endphp
+        <span data-wm>@foreach ($wmWords as $i => $word)@if ($i > 0)<span data-wm-collapse>&nbsp;</span>@endif<span>{{ mb_substr($word, 0, 1) }}</span><span data-wm-collapse>{{ mb_substr($word, 1) }}</span>@endforeach</span>
+      </a>
 
-      {{-- floating pill nav + separate circular theme toggle --}}
-      <div class="flex items-center gap-2">
-        <nav class="flex items-center gap-0.5 rounded-full border border-line bg-paper-2/70 p-1 backdrop-blur-md"
-          aria-label="Primary">
-          <a href="/work"
-            class="rounded-full px-4 py-1.5 text-sm text-muted hover:text-ink transition-colors">Work</a>
-          <a href="/writing"
-            class="rounded-full px-4 py-1.5 text-sm text-muted hover:text-ink transition-colors">Writing</a>
-          <a href="/about"
-            class="rounded-full px-4 py-1.5 text-sm text-muted hover:text-ink transition-colors">About</a>
-          <a href="/contact"
-            class="rounded-full px-4 py-1.5 text-sm text-muted hover:text-ink transition-colors">Contact</a>
+      {{-- Option-2 prototype: pills by default. Three chips (wordmark above, nav
+           links, toggle), each a faint tint + backdrop-blur for legibility over
+           content. The sliding hover pill lives inside the nav chip; the toggle
+           strengthens its own fill on hover. --}}
+      <div class="flex items-center gap-1 sm:gap-3">
+        <nav data-nav class="chip relative flex h-9 items-center backdrop-blur" aria-label="Primary">
+          <span data-nav-indicator aria-hidden="true"
+            class="pointer-events-none absolute top-1/2 -translate-y-1/2 rounded-full opacity-0"></span>
+          @foreach ($page->nav as $link)
+            <a href="{{ $link['url'] }}" data-nav-link
+              class="relative z-10 inline-flex h-full items-center px-3 text-sm text-muted hover:text-ink transition-colors sm:px-4">{{ $link['label'] }}</a>
+          @endforeach
         </nav>
         <button id="theme-toggle" type="button" aria-label="Toggle dark mode"
-          class="inline-flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center rounded-full border border-line bg-paper-2/70 text-muted hover:text-ink transition-colors backdrop-blur-md">
+          class="chip action-hover inline-flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center text-muted hover:text-ink transition-colors backdrop-blur">
           {{-- sun, shown in dark mode --}}
           <svg class="hidden h-4 w-4 dark:block" viewBox="0 0 24 24" fill="none" stroke="currentColor"
             stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -80,38 +90,31 @@
   </div>
 
   {{-- footer doubles as the contact block. The whole footer is bg-paper
-         (opaque) so the fixed fluid canvas can't show through the gap or side
-         margins around the panel. --}}
+       (opaque) so the fixed fluid canvas can't show through the gap or side
+       margins around the panel. --}}
   <footer id="contact" class="relative z-10 bg-paper pt-24 px-3 pb-3 sm:px-4 sm:pb-4">
     <div class="rounded-3xl bg-paper-2 px-6 py-12 sm:px-10 sm:py-14">
       <div class="mx-auto max-w-4xl">
         <div class="flex flex-wrap items-start justify-between gap-8">
           <div>
-            <p class="flex items-center gap-2.5 text-sm text-muted">
-              {{-- <span class="relative flex h-2 w-2" aria-hidden="true">
-                                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-ink/40"></span>
-                                <span class="relative inline-flex h-2 w-2 rounded-full bg-ink"></span>
-                            </span> --}}
-              Get in touch
-            </p>
-            <a href="mailto:hello@blessedzulu.com"
-              class="mt-4 inline-block font-serif text-3xl u sm:text-4xl">hello@blessedzulu.com</a>
+            <p class="font-mono text-xs uppercase tracking-[0.2em] text-faint">Get in touch</p>
+            <a href="mailto:{{ $page->person['email'] }}"
+              class="mt-4 inline-block font-serif text-3xl u sm:text-4xl">{{ $page->person['email'] }}</a>
             <p class="mt-4 max-w-md text-muted">Available for work and collaborations.</p>
           </div>
-          <a id="back-to-top" href="#" class="text-sm text-muted transition-colors hover:text-ink">Back to top
-            &uarr;</a>
+          <a id="back-to-top" href="#" class="action -mr-3 px-3 py-1.5 text-sm text-muted">Back to top &uarr;</a>
         </div>
 
         <div
           class="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6 text-sm text-faint">
-          <span>&copy; <span id="year">2026</span> Blessed Zulu</span>
-          <nav class="flex gap-5 text-muted">
-            <a href="https://github.com/blessedzulu" target="_blank" rel="noopener"
-              class="transition-colors hover:text-ink">GitHub</a>
-            <a href="https://www.linkedin.com/in/blessedzulu" target="_blank" rel="noopener"
-              class="transition-colors hover:text-ink">LinkedIn</a>
-            <a href="https://x.com/blessedzulu_" target="_blank" rel="noopener"
-              class="transition-colors hover:text-ink">X</a>
+          <span>&copy; <span id="year">{{ date('Y') }}</span> {{ $page->site['name'] }}</span>
+          <nav data-nav class="relative -mr-3 flex items-center gap-1 text-muted" aria-label="Social">
+            <span data-nav-indicator aria-hidden="true"
+              class="pointer-events-none absolute top-1/2 -translate-y-1/2 rounded-full opacity-0"></span>
+            @foreach ($page->socials as $social)
+              <a href="{{ $social['url'] }}" target="_blank" rel="noopener" data-nav-link
+                class="relative z-10 px-3 py-1.5 transition-colors hover:text-ink">{{ $social['label'] }}</a>
+            @endforeach
           </nav>
         </div>
       </div>
