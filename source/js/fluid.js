@@ -1087,23 +1087,11 @@ window.addEventListener("mousemove", (event) => {
 });
 window.addEventListener("mouseup", releaseGlyph);
 
-window.addEventListener(
-  "touchstart",
-  (event) => {
-    if (event.touches[0]) pressGlyph(event.touches[0].clientX, event.touches[0].clientY);
-  },
-  { passive: true }
-);
-window.addEventListener(
-  "touchmove",
-  (event) => {
-    if (!event.touches[0]) return;
-    if (holding) dragGlyph(event.touches[0].clientX, event.touches[0].clientY);
-    else moveCursor(event.touches[0].clientX, event.touches[0].clientY);
-  },
-  { passive: true }
-);
-window.addEventListener("touchend", releaseGlyph);
+// Touch interaction is deliberately NOT wired up. The model here is hover to
+// ripple and press-and-hold to grow the glyph, which are pointer gestures; on a
+// touchscreen the only gesture available is a drag, so every attempt to scroll
+// pressed and dragged the glyph (and held the simulation in slow-time), which
+// made the page feel broken. On touch the fluid stays a passive backdrop.
 
 document.addEventListener("keydown", (event) => {
   switch (event.key) {
@@ -1118,11 +1106,19 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-// on window resize, refresh
+// On resize the grid constants have to be recomputed, and the simplest way to
+// do that is a reload. But mobile browsers fire "resize" every time the URL bar
+// hides or shows while scrolling, and that only changes the HEIGHT - reloading
+// there meant every scroll gesture reloaded the page. So only react to WIDTH
+// changes (an orientation change alters the width too, so that stays covered).
+let lastWidth = window.innerWidth;
 let resizeTimeout;
 window.addEventListener("resize", () => {
+  if (window.innerWidth === lastWidth) return;
   clearTimeout(resizeTimeout);
   resizeTimeout = setTimeout(() => {
+    if (window.innerWidth === lastWidth) return;
+    lastWidth = window.innerWidth;
     window.location.reload();
   }, 250);
 });
@@ -1143,13 +1139,12 @@ async function requestDeviceMotion() {
   }
 }
 
-window.addEventListener("click", requestDeviceMotion, { once: true });
-document.addEventListener("touchend", requestDeviceMotion, {
-  once: true,
-});
+// Device-motion (tilt) is deliberately not requested. On iOS the first tap
+// popped a "Allow Motion & Orientation Access?" permission dialog, which is a
+// jarring thing for a portfolio to do uninvited. Call requestDeviceMotion()
+// from a deliberate user action if you ever want tilt back.
 function setupDeviceMotion() {
   window.addEventListener("devicemotion", (event) => {
-    console.log("Device motion event:", event);
     let x = event.accelerationIncludingGravity.x;
     let y = event.accelerationIncludingGravity.y;
 
