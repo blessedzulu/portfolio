@@ -4,27 +4,34 @@
       $item  a project array from config('projects')
       $n     1-based index shown in the gutter
 
-    Layout convention (see item 9 of the polish pass): technologies are the
-    ONLY things rendered as chips. Role, platforms, client and package name
-    read as a single plain meta line.
+    Layout convention: technologies are the ONLY things rendered as chips.
+    Role, platform, client, year and package render as labelled spec columns
+    (mono all-caps label above a sans value), so each fact is named rather than
+    running together as one grey line.
 --}}
 @php
     $tag = ! empty($item['url']) ? 'a' : 'div';
 
-    // Plain meta line - role · platforms · client · package (chips are tech only).
-    // Config values are IterableObjects, so build the list via foreach.
-    $meta = [];
-    if (! empty($item['role']))    { $meta[] = $item['role']; }
-    foreach (($item['platforms'] ?? []) as $p) { $meta[] = $p; }
-    if (! empty($item['client']))  { $meta[] = $item['client']; }
-    if (! empty($item['package'])) { $meta[] = $item['package']; }
+    // Spec pairs. Config values are IterableObjects, so build lists via foreach.
+    $platforms = [];
+    foreach (($item['platforms'] ?? []) as $p) { $platforms[] = $p; }
+
+    // Client leads: it is the headline credential on client work, and putting the
+    // longest value first lets it take the full first row before the shorter
+    // fields wrap in beside each other.
+    $specs = [];
+    if (! empty($item['client']))  { $specs[] = ['label' => 'Client',   'value' => $item['client']]; }
+    if (! empty($item['role']))    { $specs[] = ['label' => 'Role',     'value' => $item['role']]; }
+    if (count($platforms))         { $specs[] = ['label' => 'Platform', 'value' => implode(', ', $platforms)]; }
+    if (! empty($item['year']))    { $specs[] = ['label' => 'Year',     'value' => $item['year']]; }
+    if (! empty($item['package'])) { $specs[] = ['label' => 'Package',  'value' => $item['package']]; }
 @endphp
+{{-- On mobile the index stacks above the content; from sm it moves into a gutter. --}}
 <{{ $tag }}
     @if (! empty($item['url'])) href="{{ $item['url'] }}" target="_blank" rel="noopener" @endif
-    class="group grid grid-cols-[2rem_1fr] gap-x-4 border-b border-line py-8 last:border-b-0 sm:grid-cols-[3rem_1fr] sm:gap-x-8 sm:py-10">
+    class="group grid gap-y-2 border-b border-line py-8 last:border-b-0 sm:grid-cols-[3rem_1fr] sm:gap-x-8 sm:gap-y-0 sm:py-10">
 
-    {{-- index gutter --}}
-    <span class="pt-1.5 font-mono text-xs text-faint tabular-nums">{{ sprintf('%02d', $n) }}</span>
+    <span class="font-mono text-xs text-faint tabular-nums sm:pt-1.5">{{ sprintf('%02d', $n) }}</span>
 
     <div>
         <div class="flex items-start justify-between gap-4">
@@ -32,11 +39,20 @@
             @include('_partials.status-pill', ['status' => $item['status'] ?? null, 'class' => 'mt-1.5'])
         </div>
 
-        @if (count($meta))
-            <p class="mt-2 text-sm text-faint">{{ implode(' · ', $meta) }}</p>
+        {{-- spec columns. flex-wrap (not a fixed grid) so a long client name keeps
+             its natural width instead of being squeezed into a narrow column. --}}
+        @if (count($specs))
+            <div class="mt-4 flex flex-wrap gap-x-10 gap-y-4">
+                @foreach ($specs as $s)
+                    <div>
+                        <p class="font-mono text-[0.65rem] uppercase tracking-wider text-faint">{{ $s['label'] }}</p>
+                        <p class="mt-1 text-sm text-muted">{{ $s['value'] }}</p>
+                    </div>
+                @endforeach
+            </div>
         @endif
 
-        <p class="mt-3 max-w-xl leading-relaxed text-muted">{{ $item['blurb'] }}</p>
+        <p class="mt-4 max-w-xl leading-relaxed text-muted">{{ $item['blurb'] }}</p>
 
         {{-- chips: technologies only --}}
         @if (! empty($item['tech']))

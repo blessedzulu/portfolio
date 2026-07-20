@@ -1,6 +1,6 @@
 ---
 title: Work
-description: Selected projects, client systems and open-source work by Blessed Zulu - mostly Laravel, PHP and mobile.
+description: Selected projects, client systems and open-source work by Blessed Zulu.
 ---
 @extends('_layouts.main')
 
