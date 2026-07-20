@@ -10,7 +10,9 @@ $person  = $page->person;
 $abs     = fn ($path) => ($base ?: '') . $path;
 
 echo "# {$site['name']}\n\n";
-echo "> {$person['jobTitle']} in {$person['locality']}, {$person['country']}, building ambitious websites, apps and systems end to end - mostly with Laravel and PHP.\n\n";
+// Short positioning line only - the paragraph below already carries the range,
+// so repeating it here would just duplicate inside the same file.
+echo "> {$person['jobTitle']} in {$person['locality']}, {$person['country']}, building software people rely on.\n\n";
 echo "{$site['name']} designs and builds products he owns and runs, systems for universities and businesses, and open-source packages for the tools he uses every day.\n\n";
 
 echo "## Projects\n";

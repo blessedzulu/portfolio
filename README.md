@@ -1,11 +1,9 @@
 # blessedzulu.com
 
-A minimal personal / portfolio site, built to be forked. Static output, no database,
-no server to maintain. One config file holds everything that makes it *yours*; the
-templates never hardcode identity or content.
+My minimal static personal / portfolio site.
 
 Built with [Jigsaw](https://jigsaw.tighten.co) (Blade + flat-file markdown), Tailwind v4,
-and Vite. The one flourish is an interactive ASCII fluid on the home page that spells **BZ**.
+and Vite.
 
 ![Open Graph preview](source/og.png)
 
@@ -35,8 +33,7 @@ cd build_production && python3 -m http.server 8000
 Deploy the contents of `build_production/` to any static host (Cloudflare Pages,
 Netlify, a plain box, etc.).
 
-Netlify is configured in [`netlify.toml`](netlify.toml). Two gotchas worth knowing
-if you deploy this elsewhere: it is a **PHP** site, so your host must run
+Netlify is configured in [`netlify.toml`](netlify.toml). If you are deploying this elsewhere, note: it is a **PHP** site, so your host must run
 `composer install` (npm alone is not enough - `vendor/` is gitignored and the
 Jigsaw binary lives there), and `composer.json` pins `config.platform.php` to
 **8.3** because that is the newest PHP on Netlify's build image. Raise that pin if
@@ -62,6 +59,21 @@ Add a project to `projects` once and it appears on the home shortlist (if
 
 The live domain (for absolute canonical / Open Graph / sitemap URLs) is set in
 **[`config.production.php`](config.production.php)**.
+
+### Analytics
+
+[Rybbit](https://rybbit.io) is wired up but disabled unless you set a site ID. Copy
+`.env.example` to `.env` and fill in:
+
+```
+RYBBIT_SITE_ID=your-site-id
+```
+
+On a host, set the same variable in its environment settings (on Netlify: Site
+configuration -> Environment variables). The tag is **only emitted on production
+builds**, so local work never lands in your stats, and leaving the variable unset
+disables analytics entirely. It is read from the environment rather than committed
+so that a fork of this repo does not report into someone else's site.
 
 Design tokens - colours and the three typefaces - live in the `@theme` block of
 **[`source/_assets/css/main.css`](source/_assets/css/main.css)**. Dark mode is a class

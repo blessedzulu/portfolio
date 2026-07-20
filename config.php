@@ -34,7 +34,7 @@ return [
   'site' => [
     'name' => 'Blessed Zulu',
     'tagline' => 'Software engineer in Zambia.',
-    'description' => 'Blessed Zulu is a software engineer in Zambia. He builds ambitious websites, apps and systems and ships them to real people.',
+    'description' => 'Blessed Zulu is a software engineer in Ndola, Zambia, building software people rely on - products he owns, client systems and open-source packages.',
     'locale' => 'en_GB',
   ],
 
@@ -71,6 +71,19 @@ return [
     ['label' => 'LinkedIn', 'handle' => 'in/blessedzulu', 'url' => 'https://www.linkedin.com/in/blessedzulu'],
     ['label' => 'X', 'handle' => '@blessedzulu_', 'url' => 'https://x.com/blessedzulu_'],
   ],
+  /*
+  |----------------------------------------------------------------------
+  | Analytics
+  |----------------------------------------------------------------------
+  | Rybbit site ID. Read from the environment (.env locally, host env vars on
+  | deploy) rather than committed, so a fork of this repo does not report into
+  | someone else's stats. Leave the var unset to disable analytics entirely.
+  | Only emitted on production builds, so local work is never tracked.
+  */
+  'analytics' => [
+    'rybbitSiteId' => $_ENV['RYBBIT_SITE_ID'] ?? (getenv('RYBBIT_SITE_ID') ?: ''),
+  ],
+
   'twitterHandle' => '@blessedzulu_',                          // for Twitter card attribution
 
   /*

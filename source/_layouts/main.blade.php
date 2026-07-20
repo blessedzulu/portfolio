@@ -32,6 +32,13 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;1,400&family=Instrument+Serif:ital@0;1&display=swap"
     rel="stylesheet">
+  {{-- Rybbit analytics. The site ID comes from the RYBBIT_SITE_ID env var so it
+       is not committed to this public repo (a fork would otherwise report into
+       this site's stats). Production builds only, so local work is not tracked. --}}
+  @if ($page->production && ! empty($page->analytics['rybbitSiteId']))
+    <script src="https://app.rybbit.io/api/script.js" data-site-id="{{ $page->analytics['rybbitSiteId'] }}" defer></script>
+  @endif
+
   @viteRefresh()
   <link rel="stylesheet" href="{{ vite('source/_assets/css/main.css') }}">
   <script defer type="module" src="{{ vite('source/_assets/js/main.js') }}"></script>

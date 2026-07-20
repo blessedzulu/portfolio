@@ -1,6 +1,6 @@
 ---
 title: About
-description: Blessed Zulu is a software engineer in Ndola, Zambia, building products, client systems and open-source tools with Laravel and PHP.
+description: Blessed Zulu is a software engineer in Ndola, Zambia, building products, client systems and open-source tools.
 ---
 @extends('_layouts.main')
 
