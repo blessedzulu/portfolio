@@ -107,7 +107,8 @@
         <div class="flex flex-wrap items-start justify-between gap-8">
           <div>
             <p class="font-mono text-xs uppercase tracking-[0.2em] text-faint">Get in touch</p>
-            @include('_partials.email-link', ['class' => 'mt-4 inline-block font-serif text-3xl u sm:text-4xl'])
+            <a href="mailto:{{ $page->person['email'] }}"
+              class="mt-4 inline-block font-serif text-3xl u sm:text-4xl">{{ $page->person['email'] }}</a>
             <p class="mt-4 max-w-md text-muted">Available for work and collaborations.</p>
           </div>
           <a id="back-to-top" href="#" class="action -mr-3 px-3 py-1.5 text-sm text-muted">Back to top &uarr;</a>

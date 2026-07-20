@@ -18,10 +18,9 @@ description: Get in touch with Blessed Zulu - open to freelance work, collaborat
         <div class="mt-12 border-t border-line pt-10 sm:mt-16">
             <p class="font-mono text-xs uppercase tracking-[0.2em] text-faint">Email me</p>
             <div class="mt-4 flex flex-wrap items-center gap-x-6 gap-y-3">
-                @include('_partials.email-link', ['class' => 'font-serif text-3xl u sm:text-5xl'])
-                @php [$copyUser, $copyDomain] = explode('@', $page->person['email']); @endphp
+                <a href="mailto:{{ $page->person['email'] }}" class="font-serif text-3xl u sm:text-5xl">{{ $page->person['email'] }}</a>
                 <button type="button"
-                    data-email="{{ $copyUser }}" data-email-domain="{{ $copyDomain }}" data-copied-label="Copied"
+                    data-copy="{{ $page->person['email'] }}" data-copied-label="Copied"
                     class="inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-full border border-line px-4 py-2 text-sm text-muted transition-colors hover:text-ink hover:border-ink/30">
                     <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <rect x="9" y="9" width="13" height="13" rx="2"></rect>
