@@ -1,7 +1,7 @@
 @extends('_layouts.main')
 
 @section('body')
-  {{-- BZ fluid backdrop (adapted from javierbyte/fluid-triangle, MIT) --}}
+  {{-- ASCII fluid backdrop (adapted from javierbyte/fluid-triangle, MIT) --}}
   <canvas id="fluid-canvas" aria-hidden="true"></canvas>
   <div class="render" aria-hidden="true"></div>
   <div class="fluid-mask" aria-hidden="true"></div>

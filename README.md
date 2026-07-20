@@ -124,22 +124,11 @@ source/
   _assets/css/main.css           Tailwind v4 + design tokens (@theme)
   _assets/js/main.js             theme toggle, reveal, clock, header state
   _assets/og-template.html       source for the og.png share image
-  js/fluid.js                    the BZ ASCII fluid (see below)
+  js/fluid.js                    the ASCII fluid
   og.png                         social share image
   favicon.svg
 ```
 
-## The BZ fluid
-
-`source/js/fluid.js` is a FLIP fluid simulation. The physics is Matthias Müller's
-(Ten Minute Physics, MIT), by way of Javier Bórquez's ASCII version
-([`javierbyte/fluid-triangle`](https://github.com/javierbyte/fluid-triangle), MIT).
-The changes here are the render characters (they spell **BZ**), a calmer palette, and a
-gate that pauses the simulation when it scrolls off-screen or the tab is hidden. The
-original licence stays in the file header. It only runs on the home page.
-
-Tuning lives in two places: colour and cell size in `main.css` (`.render`,
-`--cell-size`), and the letters in `fluid.js` (`RENDER_CHARS`).
 
 ## Add a writing post
 
@@ -160,18 +149,12 @@ Markdown body.
 It builds to `/writing/my-slug`. Writing is not linked from the nav by default - add
 `['label' => 'Writing', 'url' => '/writing']` to `nav` in `config.php` to surface it.
 
-## Conventions
-
-- UK English throughout.
-- No em dashes.
-- Three typefaces, each with one job: serif for display, sans for body, mono for
-  all-caps labels and chips only.
-
 ## Credits
 
 - ASCII fluid: [javierbyte/fluid-triangle](https://github.com/javierbyte/fluid-triangle) (MIT).
 - Typefaces: Instrument Serif, Instrument Sans, Geist Mono (Google Fonts).
+- Rebuilt in collaboration with [Claude Code](https://claude.com/claude-code).
 
 ## Licence
 
-[MIT](LICENSE). Fork it, make it yours.
+[MIT](LICENSE).

@@ -1,4 +1,4 @@
-/* BZ fluid: adapted from javierbyte/fluid-triangle (MIT); physics by Matthias Muller, Ten Minute Physics. Letters changed to BZ, recoloured, gated to pause off-screen. Original licence retained below. */
+/* ASCII fluid: adapted from javierbyte/fluid-triangle (MIT); physics by Matthias Muller, Ten Minute Physics. Render characters cycle the configured stack, recoloured, gated to pause off-screen. Original licence retained below. */
 window.FLUID = window.FLUID || { run: true };
 
 /*
@@ -45,7 +45,7 @@ const BASE = [
 // The bright glyph in each cell cycles through the letters of the current
 // phrase, so the fluid spells it along its diagonals. We rotate the phrase
 // through the stack every few seconds, so the fluid morphs between the
-// technologies. Edit TECHS to match what you actually work with.
+// technologies. Edit the `stack` list in config.php to change what it spells.
 function buildRenderChars(phrase) {
   return [...phrase].map((ch) => {
     if (ch === " ") return [...BASE];

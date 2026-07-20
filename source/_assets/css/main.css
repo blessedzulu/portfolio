@@ -123,7 +123,7 @@
 .action-g { border-radius: 9999px; transition: background-color .2s ease; }
 .group:hover .action-g { background: var(--pill-fill); }
 
-/* ---- the BZ fluid (adapted from javierbyte/fluid-triangle, MIT) ---- */
+/* ---- the ASCII fluid (adapted from javierbyte/fluid-triangle, MIT) ---- */
 :root { --cell-size: 8px; }
 
 #fluid-canvas { position: fixed; inset: 0; display: none; }
