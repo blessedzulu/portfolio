@@ -189,8 +189,8 @@ return [
       'featured' => true,
     ],
     [
-      'name' => 'Fleet Monitoring',
-      'tagline' => 'Vehicle tracking and reporting for Macroworld Services.',
+      'name' => 'Fleet Management Platform',
+      'tagline' => 'Operations and financial reporting system for Lusaka Yango Partner and vehicle management service, Macroworld Services.',
       'blurb' => 'A fleet monitoring platform for Macroworld Services - tracking and reporting across a vehicle fleet.',
       'role' => 'Engineer',
       'platforms' => ['Web'],

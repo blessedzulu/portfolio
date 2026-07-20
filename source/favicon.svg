@@ -1,4 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32">
-  <rect width="32" height="32" rx="7" fill="#faf9f6"/>
-  <text x="16" y="22" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="17" fill="#1b1a16">BZ</text>
+  <!--
+    Inverts with the browser chrome so the mark keeps contrast against the tab
+    bar either way: a dark chip on light chrome, a light chip on dark chrome.
+    The default (outside the media query) is the dark chip, for browsers that
+    do not support prefers-color-scheme inside an SVG favicon.
+  -->
+  <style>
+    .bg { fill: #0a0a0a; }
+    .fg { fill: #fafafa; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #fafafa; }
+      .fg { fill: #0a0a0a; }
+    }
+  </style>
+  <rect class="bg" width="32" height="32" rx="7"/>
+  <text class="fg" x="16" y="23" text-anchor="middle"
+        font-family="Georgia, 'Times New Roman', serif" font-size="18">BZ</text>
 </svg>
