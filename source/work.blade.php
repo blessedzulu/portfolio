@@ -19,9 +19,9 @@ description: Selected projects, client systems and open-source work by Blessed Z
 
       @include('_partials.page-header', [
           'eyebrow' => 'Work',
-          'title' => "Things I've built, and keep building.",
+          'title' => "Projects I've worked on.",
           'intro' =>
-              'Products I own, systems I\'ve built for clients, and open-source contributions for the tools I use ',
+              'Products I own, systems I\'ve built for clients, and my open-source contributions to the tools I use.',
           'meta' => sprintf('%02d entries · %02d categories', $total, count($page->projectGroups)),
       ])
 
