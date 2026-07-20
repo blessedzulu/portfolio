@@ -18,6 +18,21 @@ if (timeEl) {
     setInterval(tick, 1000);
 }
 
+// Email links are assembled at runtime so the address is never plaintext in the
+// HTML - naive harvesters regex for user@domain and find nothing. Anchors get a
+// mailto and the real text; the copy button gets its value. Must run BEFORE the
+// copy handler below, which selects on [data-copy]. Without JS the markup
+// already reads "user (at) domain".
+document.querySelectorAll('[data-email][data-email-domain]').forEach((el) => {
+    const address = el.dataset.email + '@' + el.dataset.emailDomain;
+    if (el.tagName === 'A') {
+        el.setAttribute('href', 'mailto:' + address);
+        el.textContent = address;
+    } else {
+        el.dataset.copy = address;
+    }
+});
+
 // copy-to-clipboard (contact page). The async Clipboard API only works in a
 // secure context (https / localhost), so fall back to execCommand for plain
 // http hosts like portfolio.test.
